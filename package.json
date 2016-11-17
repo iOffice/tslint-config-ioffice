@@ -1,0 +1,28 @@
+{
+  "name": "tslint-config-ioffice",
+  "version": "0.0.0",
+  "description": "TypeScript Style Guide",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ioffice/tslint-config-ioffice.git"
+  },
+  "keywords": [
+    "style guide",
+    "lint",
+    "ioffice",
+    "typescript",
+    "es6"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ioffice/tslint-config-ioffice/issues"
+  },
+  "homepage": "https://github.com/ioffice/tslint-config-ioffice#readme",
+  "publishConfig": {
+    "registry": "http://bartifactory.corp.iofficecorp.com:8081/artifactory/api/npm/ioffice-npm"
+  }
+}
