@@ -24,5 +24,12 @@
   "homepage": "https://github.com/ioffice/tslint-config-ioffice#readme",
   "publishConfig": {
     "registry": "http://bartifactory.corp.iofficecorp.com:8081/artifactory/api/npm/ioffice-npm"
+  },
+  "devDependencies": {
+    "ts-publish": "^0.1.1",
+    "tslint": "^3.15.1"
+  },
+  "resolutions": {
+    "glob": "7.1.1"
   }
 }

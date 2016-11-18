@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noEmitHelpers": true,
+    "outDir": "build",
+    "rootDir": "src",
+    "target": "es5"
+  },
+  "exclude": [
+    "build",
+    "node_modules"
+  ]
+}
