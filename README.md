@@ -8,6 +8,7 @@
       2. [Cuddled Elses](#blocks--cuddled-elses)
   2. [Whitespace](#whitespace)
       1. [Spaces](#whitespace--spaces)
+      2. [In Braces](#whitespace--in-braces)
 
 ## Blocks
 
@@ -81,6 +82,17 @@
     function baz() {
       const name;
     }
+    ```
+
+  <a name="#whitespace--in-braces"></a><a name="2.2"></a>
+  - [2.2](#whitespace--in-braces) Add spaces inside curly braces.
+
+    ```ts
+    // bad
+    const foo = {clark: 'kent'};
+    
+    // good
+    const foo = { clark: 'kent' };
     ```
 
 **[⬆ back to top](#table-of-contents)**

@@ -4,6 +4,10 @@
     "ter-indent": [
       true,
       2
+    ],
+    "object-curly-spacing": [
+      true,
+      "always"
     ]
   }
 }
