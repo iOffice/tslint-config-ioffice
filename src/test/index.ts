@@ -91,7 +91,7 @@ function formatResults(results: ITestResult[]): string {
       const expectedStr = expected.length ? `${'Expected'.red}:\n      ${expected.join('\n      ').blue}` : '';
       const foundStr = found.length ? `${'Found'.red}:\n      ${found.join('\n      ').yellow}` : '';
       errors.push(...[
-        `  * ${test.sectionName} - ${test.exampleNumber}`.red,
+        `  * ${topic}: ${test.sectionName} - ${test.exampleNumber}`.red,
         codeStr,
         `    ${expectedStr}`,
         `    ${foundStr}`,
