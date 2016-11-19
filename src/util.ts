@@ -10,7 +10,7 @@ interface ISection {
   reference: string;
   rule: string;
   reason?: string;
-  tslint: string[];
+  tslint: { [ruleName: string]: string };
   examples: IExample[];
 }
 

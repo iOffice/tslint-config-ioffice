@@ -6,8 +6,8 @@ const section: ISection = {
   rule: dedent`
     Use braces with all multi-line blocks.
     `,
-  tslint: [
-  ],
+  tslint: {
+  },
   examples: [
     {
       code: dedent`

@@ -6,9 +6,9 @@ const section: ISection = {
   rule: dedent`
     Use soft tabs set to 2 spaces.
     `,
-  tslint: [
-    '[ter-indent](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terIndentRule.md)',
-  ],
+  tslint: {
+    'ter-indent': 'https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terIndentRule.md',
+  },
   examples: [
     {
       code: dedent`
@@ -28,8 +28,8 @@ const section: ISection = {
         }
         `,
       errors: [
-        error(3, 4, 'ter-indent', 'temp'),
-        error(8, 1, 'ter-indent', 'temp'),
+        error(3, 0, 'ter-indent', 'Expected indentation of 2 spaces but found 4.'),
+        error(8, 0, 'ter-indent', 'Expected indentation of 2 spaces but found 1.'),
       ],
     },
   ],

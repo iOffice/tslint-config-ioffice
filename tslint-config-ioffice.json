@@ -1,0 +1,9 @@
+{
+  "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules",
+  "rules": {
+    "ter-indent": [
+      true,
+      2
+    ]
+  }
+}

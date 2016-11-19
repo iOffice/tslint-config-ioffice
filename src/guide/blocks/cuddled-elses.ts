@@ -7,8 +7,8 @@ const section: ISection = {
     If you're using multi-line blocks with \`if\` and \`else\`, put \`else\` on the same line as
     your \`if\` block's closing brace.
     `,
-  tslint: [
-  ],
+  tslint: {
+  },
   examples: [
     {
       code: dedent`
@@ -30,7 +30,7 @@ const section: ISection = {
         }
         `,
       errors: [
-        error(3, 4, 'ter-indent', 'temp'),  // TODO: flag errors
+        // error(3, 4, 'ter-indent', 'temp'),  // TODO: flag errors
       ],
     },
   ],

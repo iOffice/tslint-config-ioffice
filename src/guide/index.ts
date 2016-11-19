@@ -1,11 +1,7 @@
 import * as whitespace from './whitespace';
 import * as blocks from './blocks';
 
-const order: any[] = [
+export default [
   blocks,
   whitespace,
 ];
-
-export {
-  order,
-};

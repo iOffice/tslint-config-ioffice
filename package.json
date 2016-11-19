@@ -2,7 +2,7 @@
   "name": "tslint-config-ioffice",
   "version": "0.0.0",
   "description": "TypeScript Style Guide",
-  "main": "index.js",
+  "main": "tslint-config-ioffice.json",
   "scripts": {
     "test": "npm test"
   },
@@ -22,14 +22,16 @@
     "url": "https://github.com/ioffice/tslint-config-ioffice/issues"
   },
   "homepage": "https://github.com/ioffice/tslint-config-ioffice#readme",
-  "publishConfig": {
-    "registry": "http://bartifactory.corp.iofficecorp.com:8081/artifactory/api/npm/ioffice-npm"
-  },
   "devDependencies": {
+    "colors": "^1.1.2",
     "ts-publish": "^0.1.1",
-    "tslint": "^3.15.1"
+    "tslint": "^3.15.1",
+    "tslint-eslint-rules": "^2.2.1"
   },
   "resolutions": {
     "glob": "7.1.1"
+  },
+  "publishConfig": {
+    "registry": "http://bartifactory.corp.iofficecorp.com:8081/artifactory/api/npm/ioffice-npm"
   }
 }
