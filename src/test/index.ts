@@ -1,6 +1,6 @@
 import topicOrder from '../guide';
 import { ISection, error } from '../util';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 import 'colors';
 
 interface ITestResult {
@@ -25,15 +25,17 @@ function pad(n: number, width: number) {
 function testSection(sec: ISection, topic: string): ITestResult[] {
   const testResults: ITestResult[] = [];
   const options: Lint.ILinterOptions = {
-    configuration: require('../../tslint-config-ioffice.json'),
+    fix: false,
     formatter: 'json',
     rulesDirectory: [],
     formattersDirectory: '',
   };
+  const lintOptions = require('../../tslint-config-ioffice.json');
 
   sec.examples.forEach((ex, index) => {
-    const linter = new Lint.Linter(`${sec.name}-${index+1}.ts`, ex.code, options);
-    const result = linter.lint();
+    const linter = new Lint.Linter(options);
+    linter.lint(`${sec.name}-${index+1}.ts`, ex.code, lintOptions);
+    const result = linter.getResult();
     const failures = JSON.parse(result.output);
     testResults.push({
       topicName: topic,

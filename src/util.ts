@@ -1,4 +1,4 @@
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 import * as path from 'path';
 
 interface IExample {

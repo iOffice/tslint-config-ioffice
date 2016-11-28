@@ -13,7 +13,7 @@ const section: ISection = {
       code: dedent`
         // bad
         const story = [
-            once
+          once
           , upon
           , aTime
         ];
@@ -27,7 +27,7 @@ const section: ISection = {
         
         // bad
         const hero = {
-            firstName: 'Ada'
+          firstName: 'Ada'
           , lastName: 'Lovelace'
           , birthYear: 1815
           , superPower: 'computers'
