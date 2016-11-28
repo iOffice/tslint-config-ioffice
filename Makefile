@@ -6,3 +6,6 @@ readme: buildProject
 
 test: buildProject
 	node build/tasks.js test
+
+newRule: buildProject
+	node build/tasks.js newRule $(RULE)
