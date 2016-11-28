@@ -9,6 +9,8 @@
   2. [Whitespace](#whitespace)
       1. [Spaces](#whitespace--spaces)
       2. [In Braces](#whitespace--in-braces)
+  3. [Commas](#commas)
+      1. [Leading Trailing](#commas--leading-trailing)
 
 ## Blocks
 
@@ -93,6 +95,45 @@
     
     // good
     const foo = { clark: 'kent' };
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Commas
+
+  <a name="#commas--leading-trailing"></a><a name="3.1"></a>
+  - [3.1](#commas--leading-trailing) Leading commas: **Nope**.
+
+    ```ts
+    // bad
+    const story = [
+        once
+      , upon
+      , aTime
+    ];
+    
+    // good
+    const story = [
+      once,
+      upon,
+      aTime,
+    ];
+    
+    // bad
+    const hero = {
+        firstName: 'Ada'
+      , lastName: 'Lovelace'
+      , birthYear: 1815
+      , superPower: 'computers'
+    };
+    
+    // good
+    const hero = {
+      firstName: 'Ada',
+      lastName: 'Lovelace',
+      birthYear: 1815,
+      superPower: 'computers',
+    };
     ```
 
 **[⬆ back to top](#table-of-contents)**
