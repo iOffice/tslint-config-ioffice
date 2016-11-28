@@ -32,7 +32,7 @@ const section: ISection = {
         }
         `,
       errors: [
-        error(3, 4, 'ter-indent', 'temp'), // TODO: flag errors
+        // error(3, 4, 'ter-indent', 'temp'), // TODO: flag errors
       ],
     },
   ],

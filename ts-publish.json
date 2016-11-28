@@ -1,0 +1,15 @@
+[
+  {
+    "name": "tslint-config-ioffice",
+    "files": [
+      "src/test/index.ts",
+      "src/guide/index.ts",
+      "src/readme/index.ts",
+      "src/tasks.ts",
+      "src/util.ts"
+    ],
+    "compilerOptions": {
+      "outDir": "./build"
+    }
+  }
+]

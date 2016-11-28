@@ -16,9 +16,10 @@ function arrayDiff(source: any[], target: any[]) {
   return source.filter(item => target.indexOf(item) === -1);
 }
 
-function pad(n: number, width: number, padding: string = ' ') {
+function pad(n: number, width: number) {
   const numStr: string = n.toString();
-  return numStr.length >= width ? numStr : padding.repeat(width - numStr.length) + numStr;
+  const padding: string = new Array(width - numStr.length + 1).join(' ');
+  return numStr.length >= width ? numStr : padding + numStr;
 }
 
 function testSection(sec: ISection, topic: string): ITestResult[] {
