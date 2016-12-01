@@ -1,5 +1,6 @@
 import * as Lint from 'tslint';
 import * as path from 'path';
+import * as fs from 'fs';
 
 interface IExample {
   code: string;
@@ -27,46 +28,97 @@ function toCamelCase(str: string) {
   return words.join('');
 }
 
-export function writeNewRule(ruleKebabName: string): void {
+function writeNewRule(ruleKebabName: string): void {
   const ruleCamelName = toCamelCase(ruleKebabName);
   const ruleTemplate = `/**
- * @license
- * Copyright 2016 Palantir Technologies, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2016 iOffice, Inc.
  */
-
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
-export class Rule extends Lint.Rules.AbstractRule {
-    public static FAILURE_STRING = "** ERROR MESSAGE HERE **";
+const RULE_NAME = '${ruleKebabName}';
 
-    public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-        const walker = new (sourceFile, this.getOptions());
-        return this.applyWithWalker(walker);
-    }
+export class Rule extends Lint.Rules.AbstractRule {
+  public static metadata: Lint.IRuleMetadata = {
+    ruleName: RULE_NAME,
+    description: '',
+    rationale: Lint.Utils.dedent\`
+      \`,
+    optionsDescription: Lint.Utils.dedent\`
+      \`,
+    options: {
+      type: 'array',
+      items: [{
+        type: 'object',
+        properties: {
+        },
+        additionalProperties: false
+      }],
+      maxLength: 1
+    },
+    optionExamples: [
+      Lint.Utils.dedent\`
+        "\${RULE_NAME}": [true]
+        \`,
+      Lint.Utils.dedent\`
+        "\${RULE_NAME}": [true, {
+        }]
+        \`
+    ],
+    typescriptOnly: false,
+    type: ''  // one of "functionality" | "maintainability" | "style" | "typescript"
+  };
+
+  public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
+    const walker = new RuleWalker(sourceFile, this.getOptions());
+    return this.applyWithWalker(walker);
+  }
 }
 
 class RuleWalker extends Lint.RuleWalker {
-    // ** RULE IMPLEMENTATION HERE **
+  // ** RULE IMPLEMENTATION HERE **
 }
 `;
-  console.log('temp:', ruleTemplate);
   const projectDir = path.dirname(__dirname);
-  const rulePath = path.join(projectDir, `./src/rules/${ruleCamelName}Rule.ts`);
-  console.log('rulePath:', rulePath);
-//  fs.writeFileSync(rulePath, ruleTemplate, {flag: 'wx'});
+  const rulePath = path.join(projectDir, `src/rules/${ruleCamelName}Rule.ts`);
+  console.log('Writing: ', rulePath);
+  fs.writeFileSync(rulePath, ruleTemplate, { flag: 'wx' });
+}
+
+function writeNewRuleTests(ruleKebabName: string): void {
+  const ruleCamelName = toCamelCase(ruleKebabName);
+  const testTemplate = `import { RuleTester, Failure, Position, dedent } from './ruleTester';
+
+const ruleTester = new RuleTester('${ruleKebabName}');
+
+function expecting(errors: string[]]): Failure[] {
+  return errors.map((err) => {
+    let message = '';
+    return {
+      failure: message,
+      startPosition: new Position(err[0]),
+      endPosition: new Position()
+    };
+  });
+}
+
+ruleTester.addTestGroup('group-name', 'should ...', [
+  {
+    code: dedent\`
+     // code goes here
+     \`,
+    options: [],
+    errors: expecting([
+    ])
+  }
+]);
+
+ruleTester.runTests();
+`;
+  const projectDir = path.dirname(__dirname);
+  const testPath = path.join(projectDir, `src/test/rules/${ruleCamelName}RuleTests.ts`);
+  console.log('Writing: ', testPath);
+  fs.writeFileSync(testPath, testTemplate, { flag: 'wx' });
 }
 
 export {
@@ -74,4 +126,6 @@ export {
   ISection,
   dedent,
   error,
+  writeNewRule,
+  writeNewRuleTests,
 };

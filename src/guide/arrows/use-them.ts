@@ -36,6 +36,13 @@ const section: ISection = {
         error(2, 14, 'ter-prefer-arrow-callback', 'Unexpected function expression.'),
       ],
     },
+    {
+      code: dedent`
+        // good
+        [0, null, 1, null, 2].filter(x => x !== null);
+        `,
+      errors: [],
+    },
   ],
 };
 

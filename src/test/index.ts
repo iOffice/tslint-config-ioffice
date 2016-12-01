@@ -22,7 +22,7 @@ function pad(n: number, width: number) {
   return numStr.length >= width ? numStr : padding + numStr;
 }
 
-function testSection(sec: ISection, topic: string): ITestResult[] {
+function testSection(sec: ISection, topic: string, num?: string): ITestResult[] {
   const testResults: ITestResult[] = [];
   const options: Lint.ILinterOptions = {
     fix: false,
@@ -33,6 +33,9 @@ function testSection(sec: ISection, topic: string): ITestResult[] {
   const lintOptions = require('../../tslint-config-ioffice.json');
 
   sec.examples.forEach((ex, index) => {
+    if (num && parseInt(num, 10) !== index + 1) {
+      return;
+    }
     const linter = new Lint.Linter(options);
     linter.lint(`${sec.name}-${index+1}.ts`, ex.code, lintOptions);
     const result = linter.getResult();
@@ -53,13 +56,18 @@ function testSection(sec: ISection, topic: string): ITestResult[] {
   return testResults;
 }
 
-function testGuide(): ITestResult[]  {
+function testGuide(topic?: string): ITestResult[]  {
+  const [ runTopic, runGroup, runIndex ] = (topic || '').split(':');
   const results: ITestResult[] = [];
   topicOrder.forEach((topic, index) => {
-    topic.order.forEach((module: any) => {
-      const res = testSection(module.section, topic.reference);
-      results.push(...res);
-    });
+    if (runTopic === '' || runTopic === topic.reference) {
+      topic.order.forEach((module: any) => {
+        if (!runGroup || runGroup === module.section.reference) {
+          const res = testSection(module.section, topic.reference, runIndex);
+          results.push(...res);
+        }
+      });
+    }
   });
   return results;
 }

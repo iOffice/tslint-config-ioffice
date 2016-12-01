@@ -1,11 +1,16 @@
-buildProject:
-	ts-compile tslint-config-ioffice --verbose
+## Tasks
 
 readme: buildProject
 	node build/tasks.js readme
 
-test: buildProject
-	node build/tasks.js test
+testGuide: buildProject
+	node build/tasks.js testGuide $(TOPIC)
 
 newRule: buildProject
 	node build/tasks.js newRule $(RULE)
+
+
+## Dependencies
+
+buildProject:
+	ts-compile tslint-config-ioffice --verbose
