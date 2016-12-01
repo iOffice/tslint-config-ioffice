@@ -34,6 +34,11 @@
     });
     ```
 
+    ```ts
+    // good
+    [0, null, 1, null, 2].filter(x => x !== null);
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Blocks
@@ -42,14 +47,6 @@
   - [2.1](#blocks--braces) Use braces with all multi-line blocks.
 
     ```ts
-    export class HomePage {
-      constructor(
-          public navCtrl: NavController,
-          public name: string) {
-        return this;
-      }
-    }
-          
     // bad
     if (test)
       return false;
