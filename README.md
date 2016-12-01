@@ -3,21 +3,53 @@
 
 ## Table of Contents
 
-  1. [Blocks](#blocks)
+  1. [Arrow Functions](#arrows)
+      1. [Use Them](#arrows--use-them)
+  2. [Blocks](#blocks)
       1. [Braces](#blocks--braces)
       2. [Cuddled Elses](#blocks--cuddled-elses)
-  2. [Whitespace](#whitespace)
+  3. [Whitespace](#whitespace)
       1. [Spaces](#whitespace--spaces)
       2. [In Braces](#whitespace--in-braces)
-  3. [Commas](#commas)
+  4. [Commas](#commas)
       1. [Leading Trailing](#commas--leading-trailing)
+
+## Arrow Functions
+
+  <a name="#arrows--use-them"></a><a name="1.1"></a>
+  - [1.1](#arrows--use-them) When you must use function expressions (as when passing an anonymous function), use arrow
+    function notation.
+
+    ```ts
+    // bad
+    [1, 2, 3].map(function (x) {
+      const y = x + 1;
+      return x * y;
+    });
+    
+    // good
+    [1, 2, 3].map((x) => {
+      const y = x + 1;
+      return x * y;
+    });
+    ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Blocks
 
-  <a name="#blocks--braces"></a><a name="1.1"></a>
-  - [1.1](#blocks--braces) Use braces with all multi-line blocks.
+  <a name="#blocks--braces"></a><a name="2.1"></a>
+  - [2.1](#blocks--braces) Use braces with all multi-line blocks.
 
     ```ts
+    export class HomePage {
+      constructor(
+          public navCtrl: NavController,
+          public name: string) {
+        return this;
+      }
+    }
+          
     // bad
     if (test)
       return false;
@@ -39,8 +71,8 @@
     }
     ```
 
-  <a name="#blocks--cuddled-elses"></a><a name="1.2"></a>
-  - [1.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
+  <a name="#blocks--cuddled-elses"></a><a name="2.2"></a>
+  - [2.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
     your `if` block's closing brace.
 
     ```ts
@@ -66,8 +98,8 @@
 
 ## Whitespace
 
-  <a name="#whitespace--spaces"></a><a name="2.1"></a>
-  - [2.1](#whitespace--spaces) Use soft tabs set to 2 spaces.
+  <a name="#whitespace--spaces"></a><a name="3.1"></a>
+  - [3.1](#whitespace--spaces) Use soft tabs set to 2 spaces.
 
     ```ts
     // bad
@@ -86,8 +118,8 @@
     }
     ```
 
-  <a name="#whitespace--in-braces"></a><a name="2.2"></a>
-  - [2.2](#whitespace--in-braces) Add spaces inside curly braces.
+  <a name="#whitespace--in-braces"></a><a name="3.2"></a>
+  - [3.2](#whitespace--in-braces) Add spaces inside curly braces.
 
     ```ts
     // bad
@@ -101,13 +133,13 @@
 
 ## Commas
 
-  <a name="#commas--leading-trailing"></a><a name="3.1"></a>
-  - [3.1](#commas--leading-trailing) Leading commas: **Nope**.
+  <a name="#commas--leading-trailing"></a><a name="4.1"></a>
+  - [4.1](#commas--leading-trailing) Leading commas: **Nope**.
 
     ```ts
     // bad
     const story = [
-        once
+      once
       , upon
       , aTime
     ];
@@ -121,7 +153,7 @@
     
     // bad
     const hero = {
-        firstName: 'Ada'
+      firstName: 'Ada'
       , lastName: 'Lovelace'
       , birthYear: 1815
       , superPower: 'computers'
