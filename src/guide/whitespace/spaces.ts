@@ -1,4 +1,4 @@
-import { ISection, dedent, error } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Spaces',
@@ -27,10 +27,10 @@ const section: ISection = {
           const name;
         }
         `,
-      errors: [
-        error(3, 0, 'ter-indent', 'Expected indentation of 2 spaces but found 4.'),
-        error(8, 0, 'ter-indent', 'Expected indentation of 2 spaces but found 1.'),
-      ],
+      errors: expecting([
+        [3, 0, 'ter-indent', 'Expected indentation of 2 spaces but found 4.'],
+        [8, 0, 'ter-indent', 'Expected indentation of 2 spaces but found 1.'],
+      ]),
     },
   ],
 };

@@ -1,4 +1,4 @@
-import { ISection, dedent, error } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Leading Trailing',
@@ -41,8 +41,8 @@ const section: ISection = {
           superPower: 'computers',
         };
         `,
-      errors: [
-      ],
+      errors: expecting([
+      ]),
     },
   ],
 };

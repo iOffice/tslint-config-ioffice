@@ -1,4 +1,4 @@
-import { ISection, dedent, error } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'In Braces',
@@ -18,10 +18,10 @@ const section: ISection = {
         // good
         const foo = { clark: 'kent' };
         `,
-      errors: [
-        error(2, 12, 'object-curly-spacing', 'A space is required after \'{\''),
-        error(2, 26, 'object-curly-spacing', 'A space is required before \'}\''),
-      ],
+      errors: expecting([
+        [2, 12, 'object-curly-spacing', 'A space is required after \'{\''],
+        [2, 26, 'object-curly-spacing', 'A space is required before \'}\'']
+      ]),
     },
   ],
 };

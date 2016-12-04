@@ -9,6 +9,8 @@ testGuide: buildProject
 newRule: buildProject
 	node build/tasks.js newRule $(RULE)
 
+testRules: buildProject
+	node build/tasks.js testRules $(RULE)
 
 ## Dependencies
 

@@ -1,4 +1,4 @@
-import { ISection, dedent, error } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Braces',
@@ -31,9 +31,9 @@ const section: ISection = {
           return false;
         }
         `,
-      errors: [
+      errors: expecting([
         // error(3, 4, 'ter-indent', 'temp'), // TODO: flag errors
-      ],
+      ]),
     },
   ],
 };

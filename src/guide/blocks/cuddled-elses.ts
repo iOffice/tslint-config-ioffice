@@ -1,4 +1,4 @@
-import { ISection, dedent, error } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Cuddled Elses',
@@ -29,9 +29,9 @@ const section: ISection = {
           thing3();
         }
         `,
-      errors: [
+      errors: expecting([
         // error(3, 4, 'ter-indent', 'temp'),  // TODO: flag errors
-      ],
+      ]),
     },
   ],
 };

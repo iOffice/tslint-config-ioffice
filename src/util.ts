@@ -1,10 +1,11 @@
 import * as Lint from 'tslint';
 import * as path from 'path';
 import * as fs from 'fs';
+import { Failure, Position } from './test';
 
 interface IExample {
   code: string;
-  errors: string[];
+  errors: Failure[];
 }
 
 interface ISection {
@@ -18,8 +19,16 @@ interface ISection {
 
 const dedent = Lint.Utils.dedent;
 
-function error(line: number, character: number, ruleName: string, message: string): string {
-  return `[${line}:${character}] ${ruleName}: ${message}`;
+function expecting(errors: [number, number, string, string][]): Failure[] {
+  return errors.map((err) => {
+    // err: [line, character, ruleName, message]
+    return {
+      ruleName: err[2],
+      failure: err[3],
+      startPosition: new Position(err[0], err[1]),
+      endPosition: new Position()
+    };
+  });
 }
 
 function toCamelCase(str: string) {
@@ -125,7 +134,7 @@ export {
   IExample,
   ISection,
   dedent,
-  error,
+  expecting,
   writeNewRule,
   writeNewRuleTests,
 };

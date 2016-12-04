@@ -1,6 +1,7 @@
 import { updateReadme } from './readme';
-import { testGuide, formatResults } from './test';
+import { GuideTester } from './test';
 import { writeNewRule, writeNewRuleTests } from './util';
+import topicOrder from './guide';
 
 class Task {
   /**
@@ -13,10 +14,14 @@ class Task {
   /**
    * Runs all the tests written in the guide to make sure that all the expected errors are being
    * reported by tslint.
+   *
+   * @param [topic] String in the one of the following forms:
+   *            ['topic', 'topic:section', 'topic:section:index']
+   *        This will run only the selected tests.
    */
   static testGuide(topic?: string) {
-    const results = testGuide(topic);
-    process.stdout.write(formatResults(results));
+    const tester = new GuideTester('iOffice TypeScript Style Guide', topicOrder);
+    tester.runTests(topic);
   }
 
   /**
@@ -32,6 +37,18 @@ class Task {
     writeNewRule(ruleName);
     writeNewRuleTests(ruleName);
   }
+
+  /**
+   * Runs all the rule tests.
+   *
+   * @param [ruleName] String in the one of the following forms:
+   *            ['ruleName', 'ruleName:group', 'ruleName:group:index']
+   *       This will run only the selected tests
+   */
+  // static testRules(ruleName?: string) {
+  //   const results = testRules(ruleName);
+  //   process.stdout.write(formatResults(results));
+  // }
 }
 
 const taskName: string = process.argv[2];

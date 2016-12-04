@@ -1,4 +1,4 @@
-import { ISection, dedent, error } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Use Them',
@@ -32,9 +32,9 @@ const section: ISection = {
           return x * y;
         });
         `,
-      errors: [
-        error(2, 14, 'ter-prefer-arrow-callback', 'Unexpected function expression.'),
-      ],
+      errors: expecting([
+        [2, 14, 'ter-prefer-arrow-callback', 'Unexpected function expression.'],
+      ]),
     },
     {
       code: dedent`
