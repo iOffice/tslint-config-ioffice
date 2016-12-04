@@ -1,6 +1,6 @@
 import * as Lint from 'tslint';
-import { Position } from './position';
-import { Failure, LintFailure } from './failure';
+import { Position } from './Position';
+import { Failure, LintFailure } from './Failure';
 
 interface Test {
   code: string;
@@ -36,6 +36,7 @@ class LintTest implements Test {
     const options: Lint.ILinterOptions = {
       fix: false,
       formatter: 'json',
+      rulesDirectory: 'build/rules/',
     };
 
     const linter = new Lint.Linter(options);

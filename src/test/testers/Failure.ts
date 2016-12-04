@@ -1,4 +1,4 @@
-import { Position } from './position';
+import { Position } from './Position';
 
 interface Failure {
   ruleName: string;

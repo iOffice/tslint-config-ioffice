@@ -5,6 +5,7 @@
       "src/test/index.ts",
       "src/guide/index.ts",
       "src/readme/index.ts",
+      "src/rules/index.ts",
       "src/tasks.ts",
       "src/util.ts"
     ],

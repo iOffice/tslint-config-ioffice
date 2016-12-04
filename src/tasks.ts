@@ -1,7 +1,8 @@
 import { updateReadme } from './readme';
-import { GuideTester } from './test';
+import { GuideTester, RulesTester } from './test';
 import { writeNewRule, writeNewRuleTests } from './util';
 import topicOrder from './guide';
+import rulesTestOrder from './test/rules';
 
 class Task {
   /**
@@ -25,6 +26,18 @@ class Task {
   }
 
   /**
+   * Runs all the rule tests.
+   *
+   * @param [ruleName] String in the one of the following forms:
+   *            ['ruleName', 'ruleName:group', 'ruleName:group:index']
+   *       This will run only the selected tests
+   */
+  static testRules(ruleName?: string) {
+    const tester = new RulesTester('ioffice', rulesTestOrder);
+    tester.runTests(ruleName);
+  }
+
+  /**
    * Creates template files in `src/rules` and `src/test/rules`.
    *
    * @param ruleName Must be in kebab-case
@@ -38,17 +51,6 @@ class Task {
     writeNewRuleTests(ruleName);
   }
 
-  /**
-   * Runs all the rule tests.
-   *
-   * @param [ruleName] String in the one of the following forms:
-   *            ['ruleName', 'ruleName:group', 'ruleName:group:index']
-   *       This will run only the selected tests
-   */
-  // static testRules(ruleName?: string) {
-  //   const results = testRules(ruleName);
-  //   process.stdout.write(formatResults(results));
-  // }
 }
 
 const taskName: string = process.argv[2];
