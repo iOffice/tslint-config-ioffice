@@ -1,7 +1,3 @@
-/**
- * Eslint port: https://github.com/eslint/eslint/blob/master/lib/rules/arrow-body-style.js
- * Github Commit Hash: 2bd1dd71c32d286cde10c52140a1d26f2a512a30
- */
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
@@ -98,7 +94,7 @@ class RuleWalker extends Lint.RuleWalker {
     this.requireReturnForObjectLiteral = opt[1] && opt[1].requireReturnForObjectLiteral;
   }
 
-  protected visitArrowFunction(node: ts.FunctionLikeDeclaration) {
+  protected visitArrowFunction(node: ts.ArrowFunction) {
     super.visitArrowFunction(node);
     const arrowBody = node.body;
     if (!arrowBody) return;
@@ -118,7 +114,6 @@ class RuleWalker extends Lint.RuleWalker {
         this.addFailure(failure);
       }
     }
-
 
   }
 }

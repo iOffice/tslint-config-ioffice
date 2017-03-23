@@ -1,7 +1,7 @@
-import 'ts-helpers';
 import { BaseTester } from './BaseTester';
 import { SectionTests } from './SectionTests';
 import { TestResult } from './Test';
+import { ISection } from '../../util';
 
 const LINT_CONFIG = require('../../../tslint-config-ioffice.json');
 
@@ -30,11 +30,12 @@ class GuideTester extends BaseTester {
       if (runTopic === '' || runTopic === topic.reference) {
         this.fire('run-topic', { name: topic.reference, topic });
         topic.order.forEach((module: any) => {
-          if (!runGroup || runGroup === module.section.reference) {
+          const moduleSec: ISection = module.section;
+          if (!runGroup || runGroup === moduleSec.reference) {
             const section = new SectionTests(
               topic.reference,
-              module.section.reference,
-              module.section.examples,
+              moduleSec.reference,
+              moduleSec.examples,
               LINT_CONFIG,
             )
             const sectionResults: TestResult[] = [];

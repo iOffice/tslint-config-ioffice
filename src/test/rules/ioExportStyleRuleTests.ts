@@ -1,13 +1,13 @@
 import { RuleTester, Failure, Position } from '../testers';
 
-const tester = new RuleTester('io-export-style');
+const ruleTester = new RuleTester('io-export-style');
 
 function expecting(errors: [number, number, boolean][]): Failure[] {
   return errors.map((err) => {
     const val = err[2] ? 'Expected' : 'Unexpected';
     const message = `${val} block statement surrounding arrow body.`;
     return {
-      ruleName: tester.ruleName,
+      ruleName: ruleTester.ruleName,
       failure: message,
       startPosition: new Position(err[0], err[1]),
       endPosition: new Position()
@@ -15,7 +15,7 @@ function expecting(errors: [number, number, boolean][]): Failure[] {
   });
 }
 
-tester.addSection('group-name', [
+ruleTester.addSection('group-name', [
   {
     code: 'var foo = () => 0;',
     output: 'var foo = () => {return 0};',
@@ -27,5 +27,6 @@ tester.addSection('group-name', [
 ]);
 
 export {
-  tester as ruleTester,
+  RuleTester,
+  ruleTester,
 }

@@ -1,4 +1,3 @@
-import 'ts-helpers';
 import { BaseTester } from './BaseTester';
 import { TestResult } from './Test';
 import { SectionTests } from './SectionTests';
@@ -14,9 +13,8 @@ class RulesTester extends BaseTester {
   }
 
   /**
-   * Run the guide tests.
+   * Run the rule tests.
    *
-   * @param topicOrder
    * @param topic
    */
   public runTests(topic?: string): TestResult[] {

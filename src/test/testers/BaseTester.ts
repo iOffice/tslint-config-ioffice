@@ -6,7 +6,7 @@ class BaseTester {
       process.stdout.write(`\n  ${name}\n`)
     },
     'run-section': ({ name, status, failed }: any) => {
-      const buffer = [];
+      const buffer: string[] = [];
       if (status === 'passed') {
         buffer.push(`    ${'✓'.green} ${name}\n`);
       } else {

@@ -1,6 +1,6 @@
-import * as Lint from 'tslint';
 import * as path from 'path';
 import * as fs from 'fs';
+import { dedent } from 'tslint/lib/utils';
 import { Failure, Position } from './test';
 
 interface IExample {
@@ -16,8 +16,6 @@ interface ISection {
   tslint: { [ruleName: string]: string };
   examples: IExample[];
 }
-
-const dedent = Lint.Utils.dedent;
 
 function expecting(errors: [number, number, string, string][]): Failure[] {
   return errors.map((err) => {

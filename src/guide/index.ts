@@ -3,9 +3,13 @@ import * as whitespace from './whitespace';
 import * as blocks from './blocks';
 import * as commas from './commas';
 
-export default [
+const topicOrder: any[] = [
   arrows,
   blocks,
   whitespace,
   commas,
 ];
+
+export {
+  topicOrder,
+};

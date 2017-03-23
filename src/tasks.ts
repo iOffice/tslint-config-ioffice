@@ -1,8 +1,8 @@
 import { updateReadme } from './readme';
 import { GuideTester, RulesTester } from './test';
 import { writeNewRule, writeNewRuleTests } from './util';
-import topicOrder from './guide';
-import rulesTestOrder from './test/rules';
+import { topicOrder } from './guide';
+import { rulesTestOrder } from './test/rules';
 
 class Task {
   /**

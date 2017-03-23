@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { ISection, IExample } from '../util';
-import topicOrder from '../guide';
+import { topicOrder } from '../guide';
 
 function createSection(num: string, ref: string, sec: ISection, lines: string[]): void {
   lines.push(`  <a name="${ref}"></a><a name="${num}"></a>`);
