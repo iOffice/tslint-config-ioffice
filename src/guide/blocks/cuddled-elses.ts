@@ -30,7 +30,7 @@ const section: ISection = {
         }
         `,
       errors: expecting([
-        // error(3, 4, 'ter-indent', 'temp'),  // TODO: flag errors
+        [6, 0, 'brace-style', 'Opening curly brace does not appear on the same line as controlling statement.'],
       ]),
     },
   ],

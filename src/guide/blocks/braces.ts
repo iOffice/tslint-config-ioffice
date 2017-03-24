@@ -32,7 +32,8 @@ const section: ISection = {
         }
         `,
       errors: expecting([
-        // error(3, 4, 'ter-indent', 'temp'), // TODO: flag errors
+        [14, 17, 'brace-style', 'Statement inside of curly braces should be on next line.'],
+        [14, 31, 'brace-style', 'Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.'],
       ]),
     },
   ],

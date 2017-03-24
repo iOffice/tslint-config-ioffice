@@ -3,21 +3,43 @@
 
 ## Table of Contents
 
-  1. [Arrow Functions](#arrows)
+  1. [Functions](#functions)
+      1. [Unused Parameters](#functions--unused-parameters)
+  2. [Arrow Functions](#arrows)
       1. [Use Them](#arrows--use-them)
-  2. [Blocks](#blocks)
+  3. [Blocks](#blocks)
       1. [Braces](#blocks--braces)
       2. [Cuddled Elses](#blocks--cuddled-elses)
-  3. [Whitespace](#whitespace)
+  4. [Whitespace](#whitespace)
       1. [Spaces](#whitespace--spaces)
       2. [In Braces](#whitespace--in-braces)
-  4. [Commas](#commas)
+  5. [Commas](#commas)
       1. [Leading Trailing](#commas--leading-trailing)
+
+## Functions
+
+  <a name="#functions--unused-parameters"></a><a name="1.1"></a>
+  - [1.1](#functions--unused-parameters) Remove them. To prevent them make sure to use `noUnusedParameters` in your
+    `tsconfig.json` file.
+
+    ```ts
+    // bad
+    function foo(a, b, c) {
+      return a + b;
+    }
+    
+    // good
+    function foo(a, b) {
+      return a + b;
+    }
+    ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Arrow Functions
 
-  <a name="#arrows--use-them"></a><a name="1.1"></a>
-  - [1.1](#arrows--use-them) When you must use function expressions (as when passing an anonymous function), use arrow
+  <a name="#arrows--use-them"></a><a name="2.1"></a>
+  - [2.1](#arrows--use-them) When you must use function expressions (as when passing an anonymous function), use arrow
     function notation.
 
     ```ts
@@ -43,8 +65,8 @@
 
 ## Blocks
 
-  <a name="#blocks--braces"></a><a name="2.1"></a>
-  - [2.1](#blocks--braces) Use braces with all multi-line blocks.
+  <a name="#blocks--braces"></a><a name="3.1"></a>
+  - [3.1](#blocks--braces) Use braces with all multi-line blocks.
 
     ```ts
     // bad
@@ -68,8 +90,8 @@
     }
     ```
 
-  <a name="#blocks--cuddled-elses"></a><a name="2.2"></a>
-  - [2.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
+  <a name="#blocks--cuddled-elses"></a><a name="3.2"></a>
+  - [3.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
     your `if` block's closing brace.
 
     ```ts
@@ -95,8 +117,8 @@
 
 ## Whitespace
 
-  <a name="#whitespace--spaces"></a><a name="3.1"></a>
-  - [3.1](#whitespace--spaces) Use soft tabs set to 2 spaces.
+  <a name="#whitespace--spaces"></a><a name="4.1"></a>
+  - [4.1](#whitespace--spaces) Use soft tabs set to 2 spaces.
 
     ```ts
     // bad
@@ -115,8 +137,8 @@
     }
     ```
 
-  <a name="#whitespace--in-braces"></a><a name="3.2"></a>
-  - [3.2](#whitespace--in-braces) Add spaces inside curly braces.
+  <a name="#whitespace--in-braces"></a><a name="4.2"></a>
+  - [4.2](#whitespace--in-braces) Add spaces inside curly braces.
 
     ```ts
     // bad
@@ -130,8 +152,8 @@
 
 ## Commas
 
-  <a name="#commas--leading-trailing"></a><a name="4.1"></a>
-  - [4.1](#commas--leading-trailing) Leading commas: **Nope**.
+  <a name="#commas--leading-trailing"></a><a name="5.1"></a>
+  - [5.1](#commas--leading-trailing) Leading commas: **Nope**.
 
     ```ts
     // bad
