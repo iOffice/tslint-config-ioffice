@@ -1,5 +1,7 @@
 ## Tasks
 
+test: testRules testGuide
+
 readme: build
 	node build/tasks.js readme
 

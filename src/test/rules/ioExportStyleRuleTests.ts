@@ -6,7 +6,7 @@ const MSG = {
   noDefault: 'Use of default exports is forbidden.',
   single: 'Only one export per file is allowed.',
   missing: 'Missing named exports declaration.',
-  all: 'All exports should be in set in the last declaration.',
+  all: 'All exports should be declared in the last export declaration.',
 };
 function expecting(errors: [number, number, string][]): Failure[] {
   return errors.map((err) => {

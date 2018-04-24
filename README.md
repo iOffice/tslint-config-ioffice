@@ -17,6 +17,7 @@
       1. [Leading Trailing](#commas--leading-trailing)
   6. [Modules](#modules)
       1. [Use Them](#modules--use-them)
+      2. [Single Export](#modules--single-export)
 
 ## Functions
 
@@ -214,6 +215,43 @@
     export {
       ts,
     };
+    ```
+
+  <a name="#modules--single-export"></a><a name="6.2"></a>
+  - [6.2](#modules--single-export) Do not use default exports. Use a single named `export` which  declares all the classes, 
+    functions, objects and interfaces that the module is exporting.
+
+    ```ts
+    // bad
+    export class A {}
+    export class B {}
+    export default A;
+    
+    // good
+    class C {}
+    class D {}
+    export {
+      C,
+      D,
+    };
+    ```
+
+    ```ts
+    // bad
+    export default function() {
+    }
+    
+    // good
+    function A() {
+    }
+    export { A };
+    ```
+
+    ```ts
+    // good
+    function A() {
+    }
+    export { A };
     ```
 
 **[⬆ back to top](#table-of-contents)**

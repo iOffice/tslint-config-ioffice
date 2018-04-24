@@ -23,6 +23,7 @@
     "object-curly-spacing": [
       true,
       "always"
-    ]
+    ],
+    "io-export-style": [true]
   }
 }
