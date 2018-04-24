@@ -23,12 +23,13 @@
   },
   "homepage": "https://github.com/ioffice/tslint-config-ioffice#readme",
   "peerDependencies": {
-    "tslint": "^4.0.0",
-    "tslint-eslint-rules": "^3.0.0"
+    "tslint": "^5.0.0",
+    "tslint-eslint-rules": "^4.0.0"
   },
   "devDependencies": {
     "@ioffice/tc-builder": "^1.1.0",
     "@types/chai": "^4.1.2",
+    "@types/diff": "^3.5.1",
     "@types/mocha": "^2.2.48",
     "@types/progress": "^2.0.1",
     "@types/request-promise": "^4.1.41",
@@ -53,6 +54,6 @@
     "registry": "https://registry.npmjs.com"
   },
   "dependencies": {
-    "ts-node": "^6.0.0"
+
   }
 }

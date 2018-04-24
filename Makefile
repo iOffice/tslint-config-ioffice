@@ -1,15 +1,15 @@
 ## Tasks
 
-readme: buildProject
+readme: build
 	node build/tasks.js readme
 
-testGuide: buildProject
+testGuide: build
 	node build/tasks.js testGuide $(TOPIC)
 
-newRule: buildProject
+newRule: build
 	node build/tasks.js newRule $(RULE)
 
-testRules: buildProject
+testRules: build
 	node build/tasks.js testRules $(RULE)
 
 ## Dependencies

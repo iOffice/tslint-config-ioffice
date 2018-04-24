@@ -33,7 +33,7 @@ class Task {
    *       This will run only the selected tests
    */
   static testRules(ruleName?: string) {
-    const tester = new RulesTester('ioffice', rulesTestOrder);
+    const tester = new RulesTester(rulesTestOrder);
     tester.runTests(ruleName);
   }
 

@@ -38,7 +38,7 @@ function toCamelCase(str: string) {
 function writeNewRule(ruleKebabName: string): void {
   const ruleCamelName = toCamelCase(ruleKebabName);
   const ruleTemplate = `/**
- * Copyright 2016 iOffice, Inc.
+ * Copyright 2018 iOffice, Inc.
  */
 import * as ts from 'typescript';
 import * as Lint from 'tslint';

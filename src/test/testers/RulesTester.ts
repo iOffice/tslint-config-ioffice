@@ -3,12 +3,10 @@ import { TestResult } from './Test';
 import { SectionTests } from './SectionTests';
 
 class RulesTester extends BaseTester {
-  private rulesNamespace: string;
   private ruleTesters: any[];
 
-  constructor(namespace: string, ruleTesters: any[]) {
+  constructor(ruleTesters: any[]) {
     super();
-    this.rulesNamespace = namespace;
     this.ruleTesters = ruleTesters;
   }
 

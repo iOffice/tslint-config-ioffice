@@ -24,10 +24,16 @@ class LintTest implements Test {
   fileName: string;
   code: string;
   output: string;
-  options: any;
+  options: Lint.Configuration.IConfigurationFile;
   errors: LintFailure[];
 
-  constructor(fName: string, code: string, output: string, options: any, errors: LintFailure[]) {
+  constructor(
+    fName: string,
+    code: string,
+    output: string,
+    options: Lint.Configuration.IConfigurationFile,
+    errors: LintFailure[]
+  ) {
     this.fileName = fName;
     this.code = code;
     this.output = output;
@@ -39,6 +45,7 @@ class LintTest implements Test {
     const options: Lint.ILinterOptions = {
       fix: false,
       formatter: 'json',
+      formattersDirectory: 'dist/formatters/',
       rulesDirectory: 'build/rules/',
     };
 
@@ -73,7 +80,7 @@ class LintTest implements Test {
     let fixedCode = '';
     if (this.output) {
       const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
-      fixedCode = Lint.Fix.applyAll(this.code, fixes as any);
+      fixedCode = Lint.Replacement.applyAll(this.code, fixes as any);
     }
 
     const testPassed = (

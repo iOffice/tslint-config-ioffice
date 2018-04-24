@@ -97,9 +97,7 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
   private validate(): void {
     if (this.toExport.length > 0) {
       const names = this.toExport.map(([node, name]) => {
-        const fix = this.createFix(
-          Lint.Replacement.deleteText(node.getStart(this.sourceFile), 7)
-        );
+        const fix = Lint.Replacement.deleteText(node.getStart(this.sourceFile), 7);
         this.addFailureAtNode(node, MSG.single, fix);
         return name;
       });
@@ -107,7 +105,7 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
       if (this.declarations.length === 0) {
         const end = this.sourceFile.end;
         const nList = names.join(',\n  ');
-        const fix = this.createFix(Lint.Replacement.appendText(end, `export {\n  ${nList}\n};\n`));
+        const fix = Lint.Replacement.appendText(end,  `export {\n  ${nList}\n};\n`);
         this.addFailureAt(end, 1, MSG.missing, fix);
       } else {
         this.declarations.forEach((declaraction) => {
