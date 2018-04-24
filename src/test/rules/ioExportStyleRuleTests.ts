@@ -5,8 +5,8 @@ const ruleTester = new RuleTester('io-export-style');
 const MSG = {
   noDefault: 'Use of default exports is forbidden.',
   single: 'Only one export per file is allowed.',
-  multi: 'Use an export next to each object being exported.',
   missing: 'Missing named exports declaration.',
+  all: 'All exports should be in set in the last declaration.',
 };
 function expecting(errors: [number, number, string][]): Failure[] {
   return errors.map((err) => {
@@ -19,7 +19,7 @@ function expecting(errors: [number, number, string][]): Failure[] {
   });
 }
 
-ruleTester.addSection('single-allow-default', [
+ruleTester.addSection('no-default-1', [
   {
     code: dedent`
       class A {}
@@ -28,7 +28,9 @@ ruleTester.addSection('single-allow-default', [
       export { A, B };
       export default A;
       `,
-    options: { single: true, allowDefault: true },
+    errors: expecting([
+      [5, 7, 'noDefault'],
+    ]),
   },
   {
     code: dedent`
@@ -44,15 +46,15 @@ ruleTester.addSection('single-allow-default', [
       export default A;
       export {
         A,
-        B
+        B,
       };
       `,
-    options: { single: true, allowDefault: true },
     errors: expecting([
       [1, 0, 'single'],
       [2, 0, 'single'],
+      [4, 7, 'noDefault'],
       [5, 0, 'missing'],
-    ])
+    ]),
   },
   {
     code: dedent`
@@ -68,13 +70,13 @@ ruleTester.addSection('single-allow-default', [
       export default A;
       export {
         A,
-        b
+        b,
       };
       `,
-    options: { single: true, allowDefault: true },
     errors: expecting([
       [1, 0, 'single'],
       [2, 0, 'single'],
+      [4, 7, 'noDefault'],
       [5, 0, 'missing'],
     ])
   },
@@ -87,13 +89,13 @@ ruleTester.addSection('single-allow-default', [
       class A {}
       export default function b() {}
       export {
-        A
+        A,
       };
       `,
-    options: { single: true, allowDefault: true },
     errors: expecting([
       [1, 0, 'single'],
       [3, 0, 'missing'],
+      [2, 7, 'noDefault'],
     ])
   },
   {
@@ -118,66 +120,95 @@ ruleTester.addSection('single-allow-default', [
         A,
         B,
         pi,
-        a
+        a,
       };
       `,
-    options: { single: true, allowDefault: true },
     errors: expecting([
       [1, 0, 'single'],
       [2, 0, 'single'],
-      [5, 0, 'missing'],
+      [4, 7, 'noDefault'],
+      [6, 0, 'single'],
+      [8, 0, 'all'],
     ])
   },
 ]);
 
-ruleTester.addSection('no-default', [
-  // {
-  //   code: dedent`
-  //     const a = 5;
-  //     export default a;
-  //     `,
-  //   errors: expecting([
-  //     [2, 7, 'noDefault'],
-  //   ])
-  // },
-  // {
-  //   code: dedent`
-  //     export default class A {}
-  //     export class B {}
-  //     `,
-  //   errors: expecting([
-  //     [1, 7, 'noDefault'],
-  //   ])
-  // },
-  // {
-  //   code: dedent`
-  //     export default function a() {}
-  //     export function b() {}
-  //     `,
-  //   errors: expecting([
-  //     [1, 7, 'noDefault'],
-  //   ])
-  // },
-  // {
-  //   code: dedent`
-  //     export default 3.14;
-  //     `,
-  //   errors: expecting([
-  //     [1, 7, 'noDefault'],
-  //   ])
-  // }
+ruleTester.addSection('no-default-2', [
+  {
+    code: dedent`
+      const a = 5;
+      export default a;
+      `,
+    errors: expecting([
+      [2, 7, 'noDefault'],
+    ])
+  },
+  {
+    code: dedent`
+      export default class A {}
+      export class B {}
+      `,
+    output: dedent`
+      export default class A {}
+      class B {}
+      export {
+        B,
+      };
+      `,
+    errors: expecting([
+      [1, 7, 'noDefault'],
+      [2, 0, 'single'],
+      [3, 0, 'missing'],
+    ]),
+  },
+  {
+    code: dedent`
+      export default function a() {}
+      export function b() {}
+      `,
+    output: dedent`
+      export default function a() {}
+      function b() {}
+      export {
+        b,
+      };
+      `,
+    errors: expecting([
+      [1, 7, 'noDefault'],
+      [2, 0, 'single'],
+      [3, 0, 'missing'],
+    ])
+  },
+  {
+    code: dedent`
+      export default 3.14;
+      `,
+    errors: expecting([
+      [1, 7, 'noDefault'],
+    ])
+  }
 ]);
 
-// ruleTester.addSection('single', [
-//   {
-//     code: dedent`
-//       const a = 5;
-//       export { a };
-//       `,
-//     errors: expecting([
-//     ])
-//   },
-// ])
+ruleTester.addSection('single', [
+  {
+    code: dedent`
+      const a = 5;
+      export { a };
+      `,
+    errors: expecting([
+    ])
+  },
+  {
+    code: dedent`
+      const a = 5;
+      export const b = 5;
+      export { a };
+      `,
+    errors: expecting([
+      [2, 0, 'single'],
+    ])
+  },
+])
 
 export {
   RuleTester,

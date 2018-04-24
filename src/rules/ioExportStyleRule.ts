@@ -9,8 +9,8 @@ interface RuleOptions {
 const MSG = {
   noDefault: 'Use of default exports is forbidden.',
   single: 'Only one export per file is allowed.',
-  multi: 'Use an export next to each object being exported.',
   missing: 'Missing named exports declaration.',
+  all: 'All exports should be in set in the last declaration.',
 };
 
 class Rule extends Lint.Rules.AbstractRule {
@@ -21,39 +21,15 @@ class Rule extends Lint.Rules.AbstractRule {
       Having a consistent export style allows us to easily identify the objects we are exporting.
       `,
     optionsDescription: Lint.Utils.dedent`
-      This rule takes in an options object with two properties: \`mode\` and \`allowDefault\`.
-      
-      - \`"single"\`: When using \`true\` the rule will check that there is only one \`export\`
-                      keyword in the file.
-      - \`"allowDefault"\`: boolean stating if we allow default exports. \`false\` by default.
+      This rule takes takes no options
       `,
     options: {
       type: 'object',
-      properties: {
-        single: {
-          type: 'boolean',
-        },
-        allowDefault: {
-          type: 'boolean',
-        },
-      },
-      additionalProperties: false
+      additionalProperties: false,
     },
     optionExamples: [
       Lint.Utils.dedent`
         "${RULE_NAME}": [true]
-        `,
-      Lint.Utils.dedent`
-        "${RULE_NAME}": [true, {
-          "single": false,
-          "allowDefault": true
-        }]
-        `,
-      Lint.Utils.dedent`
-        "${RULE_NAME}": [true, {
-          "single": true,
-          "allowDefault": false
-        }]
         `,
     ],
     type: "maintainability",
@@ -73,7 +49,7 @@ class Rule extends Lint.Rules.AbstractRule {
 class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
   declarations: ts.ExportDeclaration[] = [];
   toExport: [ts.Node, string][] = [];
-  defaultExport: ts.Node[] | undefined = undefined;
+  defaultExport: ts.Node | undefined = undefined;
 
   public walk(sourceFile: ts.SourceFile): void {
     const cb = (node: ts.Node): void => {
@@ -82,10 +58,13 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
       } else if (node.kind === ts.SyntaxKind.ExportKeyword && node.parent) {
         this.handleExportedObject(node);
       } else if (node.kind === ts.SyntaxKind.ExportAssignment) {
-        // const exportMember = node.getChildAt(1);
-        // if (exportMember && exportMember.kind === ts.SyntaxKind.DefaultKeyword) {
-        //   // this.addFailureAtNode(exportMember, MSG.noDefault);
-        // }
+        this.defaultExport = node;
+        const exportMember = node.getChildAt(1);
+        if (exportMember && exportMember.kind === ts.SyntaxKind.DefaultKeyword) {
+          // No fix for default export since we may not be exporting a variable. We'll leave as
+          // is and allow the developer to remove it manually.
+          this.addFailureAtNode(exportMember, MSG.noDefault);
+        }
       } else {
         return ts.forEachChild(node, cb);
       }
@@ -105,17 +84,28 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
       if (this.declarations.length === 0) {
         const end = this.sourceFile.end;
         const nList = names.join(',\n  ');
-        const fix = Lint.Replacement.appendText(end,  `export {\n  ${nList}\n};\n`);
+        const fix = Lint.Replacement.appendText(end,  `export {\n  ${nList},\n};\n`);
         this.addFailureAt(end, 1, MSG.missing, fix);
       } else {
-        this.declarations.forEach((declaraction) => {
-          if (declaraction.exportClause) {
-            names.push(...declaraction.exportClause.elements.map(x => x.name.text));
+        const lastIndex = this.declarations.length - 1;
+        this.declarations.forEach((declaration, index) => {
+          if (declaration.exportClause) {
+            names.push(...declaration.exportClause.elements.map(x => x.name.text));
+            if (index < lastIndex) {
+              const fix = Lint.Replacement.deleteText(
+                declaration.getStart(this.sourceFile),
+                declaration.getText(this.sourceFile).length + 1
+              );
+              this.addFailureAtNode(declaration, MSG.single, fix);
+            }
           }
         });
-        console.log('here:', names);
-      }
 
+        const lastDeclaration = this.declarations[this.declarations.length - 1];
+        const nList = names.join(',\n  ');
+        const fix = Lint.Replacement.replaceNode(lastDeclaration, `export {\n  ${nList},\n};`, this.sourceFile);
+        this.addFailureAtNode(lastDeclaration, MSG.all, fix);
+      }
     }
   }
 
@@ -129,14 +119,15 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
       nodes[1].kind === ts.SyntaxKind.DefaultKeyword
     ) ? nodes[1] : undefined;
 
-    if (!defaultNode && this.options.single && parent.name) {
-      this.toExport.push([exportToken, parent.name.text]);
-    } else if (defaultNode && !this.options.allowDefault) {
+    if (defaultNode) {
       this.addFailureAtNode(defaultNode, MSG.noDefault);
+    } else if (parent.name) {
+      this.toExport.push([exportToken, parent.name.text]);
+    } else {
+      // Not sure how we are exporting but we detected the export keyword
+      this.addFailureAtNode(exportToken, MSG.single);
     }
   }
-
-
 }
 
 export {
