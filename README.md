@@ -15,6 +15,8 @@
       2. [In Braces](#whitespace--in-braces)
   5. [Commas](#commas)
       1. [Leading Trailing](#commas--leading-trailing)
+  6. [Modules](#modules)
+      1. [Use Them](#modules--use-them)
 
 ## Functions
 
@@ -184,6 +186,33 @@
       lastName: 'Lovelace',
       birthYear: 1815,
       superPower: 'computers',
+    };
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Modules
+
+  <a name="#modules--use-them"></a><a name="6.1"></a>
+  - [6.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system. You can always
+    transpile to your preferred module system.
+
+    ```ts
+    // bad
+    const iOfficeStyleGuide = require('./iOfficeStyleGuide');
+    module.exports = iOfficeStyleGuide.ts;
+    
+    // ok
+    import * as iOfficeStyleGuide from './iOfficeStyleGuide';
+    const ts = iOfficeStyleGuide.ts;
+    export {
+      ts,
+    };
+    
+    // best
+    import { ts } from './iOfficeStyleGuide';
+    export {
+      ts,
     };
     ```
 

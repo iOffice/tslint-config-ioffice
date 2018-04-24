@@ -3,6 +3,7 @@ import * as arrows from './arrows';
 import * as whitespace from './whitespace';
 import * as blocks from './blocks';
 import * as commas from './commas';
+import * as modules from './modules';
 
 const topicOrder: any[] = [
   functions,
@@ -10,6 +11,7 @@ const topicOrder: any[] = [
   blocks,
   whitespace,
   commas,
+  modules,
 ];
 
 export {
