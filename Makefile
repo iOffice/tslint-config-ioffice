@@ -2,6 +2,9 @@
 
 test: testRules testGuide
 
+preRelease: build
+        PRERELEASE=true tc-builder run
+
 readme: build
 	node build/tasks.js readme
 
@@ -13,6 +16,9 @@ newRule: build
 
 testRules: build
 	node build/tasks.js testRules $(RULE)
+
+tcBuild: info build
+	tc-builder run
 
 ## Dependencies
 
