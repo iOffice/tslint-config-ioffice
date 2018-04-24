@@ -14,5 +14,13 @@ testRules: buildProject
 
 ## Dependencies
 
-buildProject:
-	ts-compile tslint-config-ioffice --verbose
+build: FORCE
+	tc-builder compile
+
+info:
+	node --version
+	npm --version
+	tsc --version
+	typedoc --version
+
+FORCE:

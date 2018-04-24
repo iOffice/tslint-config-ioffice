@@ -13,7 +13,7 @@ class SectionTests {
       const codeFileName = `${topicName}_${sectionName}_${index}.ts`;
       const config: any = lintConfig || { rules: { [topicName]: true } };
       if (typeof test === 'string') {
-        return new LintTest(codeFileName, test, undefined, config, []);
+        return new LintTest(codeFileName, test, '', config, []);
       }
       if (test.options) {
         config.rules[topicName] = [true, ...test.options];
@@ -27,7 +27,7 @@ class SectionTests {
           error.endPosition
         );
       });
-      return new LintTest(codeFileName, test.code, test.output, config, failures);
+      return new LintTest(codeFileName, test.code, test.output || '', config, failures);
     });
   }
 }

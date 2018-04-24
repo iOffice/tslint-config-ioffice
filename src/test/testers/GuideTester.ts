@@ -6,7 +6,7 @@ import { ISection } from '../../util';
 const LINT_CONFIG = require('../../../tslint-config-ioffice.json');
 
 class GuideTester extends BaseTester {
-  private guideName: string;
+  public guideName: string;
   private topics: any[];
 
   constructor(guideName: string, topics: any[]) {

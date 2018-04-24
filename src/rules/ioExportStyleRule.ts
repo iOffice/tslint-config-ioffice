@@ -2,118 +2,145 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
 const RULE_NAME = 'io-export-style';
+interface RuleOptions {
+  single: boolean;
+  allowDefault: boolean;
+}
+const MSG = {
+  noDefault: 'Use of default exports is forbidden.',
+  single: 'Only one export per file is allowed.',
+  multi: 'Use an export next to each object being exported.',
+  missing: 'Missing named exports declaration.',
+};
 
-export class Rule extends Lint.Rules.AbstractRule {
+class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
-    description: 'require braces in arrow function body',
+    description: "Enforces an export style",
     rationale: Lint.Utils.dedent`
-      Arrow functions have two syntactic forms for their function bodies. They may be defined with
-      a block body (denoted by curly braces) \`() => { ... }\` or with a single expression
-      \`() => ...\`, whose value is implicitly returned.
+      Having a consistent export style allows us to easily identify the objects we are exporting.
       `,
     optionsDescription: Lint.Utils.dedent`
-      The rule takes one or two options. The first is a string, which can be:
-
-      - \`"always"\` enforces braces around the function body
-      - \`"as-needed"\` enforces no braces where they can be omitted (default)
-      - \`"never"\` enforces no braces around the function body (constrains arrow functions to the
-                    role of returning an expression)
-
-      The second one is an object for more fine-grained configuration when the first option is
-      \`"as-needed"\`. Currently, the only available option is \`requireReturnForObjectLiteral\`, a
-      boolean property. It’s false by default. If set to true, it requires braces and an explicit
-      return for object literals.
+      This rule takes in an options object with two properties: \`mode\` and \`allowDefault\`.
+      
+      - \`"single"\`: When using \`true\` the rule will check that there is only one \`export\`
+                      keyword in the file.
+      - \`"allowDefault"\`: boolean stating if we allow default exports. \`false\` by default.
       `,
     options: {
-      anyOf: [
-        {
-          type: 'array',
-          items: [
-            {
-              enum: ['always', 'never']
-            }
-          ],
-          minItems: 0,
-          maxItems: 1
+      type: 'object',
+      properties: {
+        single: {
+          type: 'boolean',
         },
-        {
-          type: 'array',
-          items: [
-            {
-              enum: ['as-needed']
-            },
-            {
-              type: 'object',
-              properties: {
-                requireReturnForObjectLiteral: {type: 'boolean'}
-              },
-              additionalProperties: false
-            }
-          ],
-          minItems: 0,
-          maxItems: 2
-        }
-      ]
+        allowDefault: {
+          type: 'boolean',
+        },
+      },
+      additionalProperties: false
     },
     optionExamples: [
       Lint.Utils.dedent`
-        "${RULE_NAME}": [true, "always"]
+        "${RULE_NAME}": [true]
         `,
       Lint.Utils.dedent`
-        "${RULE_NAME}": [true, "never"]
-        `,
-      Lint.Utils.dedent`
-        "${RULE_NAME}": [true, "as-needed", {
-          "requireReturnForObjectLiteral": true
+        "${RULE_NAME}": [true, {
+          "single": false,
+          "allowDefault": true
         }]
-        `
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, {
+          "single": true,
+          "allowDefault": false
+        }]
+        `,
     ],
+    type: "maintainability",
     typescriptOnly: false,
-    type: 'style',
   };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-    const walker = new RuleWalker(sourceFile, this.getOptions());
-    return this.applyWithWalker(walker);
+    const obj = this.getOptions().ruleArguments[0] || {};
+    const options: RuleOptions = {
+      single: typeof obj.single !== 'undefined' ? !!obj.single : true,
+      allowDefault: obj.allowDefault !== false,
+    }
+    return this.applyWithWalker(new RuleWalker(sourceFile, RULE_NAME, options));
   }
 }
 
-class RuleWalker extends Lint.RuleWalker {
-  private always: boolean;
-  private asNeeded: boolean;
-  private never: boolean;
-  private requireReturnForObjectLiteral: boolean;
+class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
+  declarations: ts.ExportDeclaration[] = [];
+  toExport: [ts.Node, string][] = [];
+  defaultExport: ts.Node[] | undefined = undefined;
 
-  constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
-    super(sourceFile, options);
-    const opt = this.getOptions();
-    this.always = opt[0] === 'always';
-    this.asNeeded = !opt[0] || opt[0] === 'as-needed';
-    this.never = opt[0] === 'never';
-    this.requireReturnForObjectLiteral = opt[1] && opt[1].requireReturnForObjectLiteral;
-  }
-
-  protected visitArrowFunction(node: ts.ArrowFunction) {
-    super.visitArrowFunction(node);
-    const arrowBody = node.body;
-    if (!arrowBody) return;
-    if (arrowBody.kind === ts.SyntaxKind.Block) {
-
-    } else {
-      if (this.always || (
-          this.asNeeded &&
-          this.requireReturnForObjectLiteral &&
-          arrowBody.kind === ts.SyntaxKind.ObjectLiteralExpression
-        )) {
-        const failure = this.createFailure(
-          arrowBody.getStart(),
-          arrowBody.getWidth(),
-          "Expected block statement surrounding arrow body."
-        );
-        this.addFailure(failure);
+  public walk(sourceFile: ts.SourceFile): void {
+    const cb = (node: ts.Node): void => {
+      if (node.kind === ts.SyntaxKind.ExportDeclaration) {
+        this.declarations.push(node as ts.ExportDeclaration);
+      } else if (node.kind === ts.SyntaxKind.ExportKeyword && node.parent) {
+        this.handleExportedObject(node);
+      } else if (node.kind === ts.SyntaxKind.ExportAssignment) {
+        // const exportMember = node.getChildAt(1);
+        // if (exportMember && exportMember.kind === ts.SyntaxKind.DefaultKeyword) {
+        //   // this.addFailureAtNode(exportMember, MSG.noDefault);
+        // }
+      } else {
+        return ts.forEachChild(node, cb);
       }
-    }
-
+    };
+    ts.forEachChild(sourceFile, cb);
+    return this.validate();
   }
+
+  private validate(): void {
+    if (this.toExport.length > 0) {
+      const names = this.toExport.map(([node, name]) => {
+        const fix = this.createFix(
+          Lint.Replacement.deleteText(node.getStart(this.sourceFile), 7)
+        );
+        this.addFailureAtNode(node, MSG.single, fix);
+        return name;
+      });
+
+      if (this.declarations.length === 0) {
+        const end = this.sourceFile.end;
+        const nList = names.join(',\n  ');
+        const fix = this.createFix(Lint.Replacement.appendText(end, `export {\n  ${nList}\n};\n`));
+        this.addFailureAt(end, 1, MSG.missing, fix);
+      } else {
+        this.declarations.forEach((declaraction) => {
+          if (declaraction.exportClause) {
+            names.push(...declaraction.exportClause.elements.map(x => x.name.text));
+          }
+        });
+        console.log('here:', names);
+      }
+
+    }
+  }
+
+  private handleExportedObject(exportToken: ts.Node): void {
+    const parent = exportToken.parent as ts.DeclarationStatement;
+    const nodes = parent.modifiers;
+    const defaultNode: ts.Node | undefined = (
+      nodes &&
+      nodes.length === 2 &&
+      nodes[0].kind === ts.SyntaxKind.ExportKeyword &&
+      nodes[1].kind === ts.SyntaxKind.DefaultKeyword
+    ) ? nodes[1] : undefined;
+
+    if (!defaultNode && this.options.single && parent.name) {
+      this.toExport.push([exportToken, parent.name.text]);
+    } else if (defaultNode && !this.options.allowDefault) {
+      this.addFailureAtNode(defaultNode, MSG.noDefault);
+    }
+  }
+
+
+}
+
+export {
+  Rule,
 }

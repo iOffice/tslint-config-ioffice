@@ -1,4 +1,5 @@
 import * as Lint from 'tslint';
+import * as jsdiff from 'diff';
 import { Position } from './Position';
 import { Failure, LintFailure } from './Failure';
 
@@ -13,6 +14,8 @@ interface TestResult {
   fileName: string;
   status: 'passed' | 'failed';
   code: string;
+  outputExpected: string,
+  outputFound: string,
   errorsExpected: LintFailure[],
   errorsFound: LintFailure[],
 }
@@ -20,11 +23,11 @@ interface TestResult {
 class LintTest implements Test {
   fileName: string;
   code: string;
-  output: string | undefined;
+  output: string;
   options: any;
   errors: LintFailure[];
 
-  constructor(fName: string, code: string, output: string | undefined, options: any, errors: LintFailure[]) {
+  constructor(fName: string, code: string, output: string, options: any, errors: LintFailure[]) {
     this.fileName = fName;
     this.code = code;
     this.output = output;
@@ -56,17 +59,34 @@ class LintTest implements Test {
       );
     });
 
-    return this.getTestResults(expectedErrors, foundErrors);
+    return this.getTestResults(expectedErrors, foundErrors, linter);
   }
 
-  private getTestResults(expectedErrors: LintFailure[], foundErrors: LintFailure[]): TestResult {
+  private getTestResults(
+    expectedErrors: LintFailure[],
+    foundErrors: LintFailure[],
+    linter: Lint.Linter
+  ): TestResult {
     const errorsExpected = this.arrayDiff(expectedErrors, foundErrors);
     const errorsFound = this.arrayDiff(foundErrors, expectedErrors, false);
 
+    let fixedCode = '';
+    if (this.output) {
+      const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
+      fixedCode = Lint.Fix.applyAll(this.code, fixes as any);
+    }
+
+    const testPassed = (
+      errorsExpected.length === 0 &&
+      errorsFound.length === 0 &&
+      fixedCode === this.output
+    );
     return {
       fileName: this.fileName,
-      status: errorsExpected.length === 0 && errorsFound.length === 0 ? 'passed' : 'failed',
+      status: testPassed ? 'passed' : 'failed',
       code: this.code,
+      outputExpected: this.output,
+      outputFound: fixedCode || this.output,
       errorsExpected,
       errorsFound,
     };
@@ -130,6 +150,18 @@ function formatTestResult(test: TestResult): string {
     const found = test.errorsFound.map(x => x.str());
     content.push(`    ${'Found'.red}:`);
     content.push(`      ${found.join('\n      ')}`);
+    content.push('');
+  }
+
+  if (test.outputExpected !== test.outputFound) {
+    content.push(`    ${'Fixer output mismatch'.red}:`);
+    const diff = jsdiff.diffLines(test.outputExpected, test.outputFound);
+    diff.forEach(function(part){
+      // green for additions, red for deletion, grey for common parts
+      const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
+      const newParts = part.value[color].split('\n');
+      content.push(`${'     |'[color]}${newParts.join('\n     |')}`);
+    });
     content.push('');
   }
 
