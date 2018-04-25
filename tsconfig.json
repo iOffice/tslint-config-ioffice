@@ -18,6 +18,7 @@
     "outDir": "./build"
   },
   "files": [
+    "src/build-tools/tcbuilder.ts",
     "src/guide/index.ts",
     "src/readme/index.ts",
     "src/rules/index.ts",

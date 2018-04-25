@@ -1,6 +1,6 @@
 ## Tasks
 
-test: testRules testGuide
+test: tcBuild
 
 preRelease: build
         PRERELEASE=true tc-builder run
@@ -18,7 +18,7 @@ testRules: build
 	node build/tasks.js testRules $(RULE)
 
 tcBuild: info build
-	tc-builder run
+	node build/build-tools/tcbuilder.js
 
 ## Dependencies
 
