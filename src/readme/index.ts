@@ -5,7 +5,7 @@ import { topicOrder } from '../guide';
 function createSection(num: string, ref: string, sec: ISection, lines: string[]): void {
   lines.push(`  <a name="${ref}"></a><a name="${num}"></a>`);
   const rule = sec.rule.trim().split('\n').join('\n    ');
-  lines.push(`  - [${num}](${ref}) ${rule}`);
+  lines.push(`  - [${num}](#${ref}) ${rule}`);
   lines.push('');
 
   sec.examples.forEach((example: IExample) => {
@@ -34,7 +34,7 @@ function createReadme(): string {
     topics.push(`## ${topic.name}\n`);
     topic.order.forEach((module: any, subIndex: number) => {
       const num = `${index + 1}.${subIndex + 1}`;
-      const ref = `#${topic.reference}--${module.section.reference}`;
+      const ref = `${topic.reference}--${module.section.reference}`;
       createSection(num, ref, module.section, topics);
     });
     topics.push('**[⬆ back to top](#table-of-contents)**');

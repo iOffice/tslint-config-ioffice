@@ -21,7 +21,7 @@
 
 ## Functions
 
-  <a name="#functions--unused-parameters"></a><a name="1.1"></a>
+  <a name="functions--unused-parameters"></a><a name="1.1"></a>
   - [1.1](#functions--unused-parameters) Remove them. To prevent them make sure to use `noUnusedParameters` in your
     `tsconfig.json` file.
 
@@ -41,7 +41,7 @@
 
 ## Arrow Functions
 
-  <a name="#arrows--use-them"></a><a name="2.1"></a>
+  <a name="arrows--use-them"></a><a name="2.1"></a>
   - [2.1](#arrows--use-them) When you must use function expressions (as when passing an anonymous function), use arrow
     function notation.
 
@@ -68,7 +68,7 @@
 
 ## Blocks
 
-  <a name="#blocks--braces"></a><a name="3.1"></a>
+  <a name="blocks--braces"></a><a name="3.1"></a>
   - [3.1](#blocks--braces) Use braces with all multi-line blocks.
 
     ```ts
@@ -93,7 +93,7 @@
     }
     ```
 
-  <a name="#blocks--cuddled-elses"></a><a name="3.2"></a>
+  <a name="blocks--cuddled-elses"></a><a name="3.2"></a>
   - [3.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
     your `if` block's closing brace.
 
@@ -120,7 +120,7 @@
 
 ## Whitespace
 
-  <a name="#whitespace--spaces"></a><a name="4.1"></a>
+  <a name="whitespace--spaces"></a><a name="4.1"></a>
   - [4.1](#whitespace--spaces) Use soft tabs set to 2 spaces.
 
     ```ts
@@ -140,7 +140,7 @@
     }
     ```
 
-  <a name="#whitespace--in-braces"></a><a name="4.2"></a>
+  <a name="whitespace--in-braces"></a><a name="4.2"></a>
   - [4.2](#whitespace--in-braces) Add spaces inside curly braces.
 
     ```ts
@@ -155,7 +155,7 @@
 
 ## Commas
 
-  <a name="#commas--leading-trailing"></a><a name="5.1"></a>
+  <a name="commas--leading-trailing"></a><a name="5.1"></a>
   - [5.1](#commas--leading-trailing) Leading commas: **Nope**.
 
     ```ts
@@ -194,7 +194,7 @@
 
 ## Modules
 
-  <a name="#modules--use-them"></a><a name="6.1"></a>
+  <a name="modules--use-them"></a><a name="6.1"></a>
   - [6.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system. You can always
     transpile to your preferred module system.
 
@@ -217,7 +217,7 @@
     };
     ```
 
-  <a name="#modules--single-export"></a><a name="6.2"></a>
+  <a name="modules--single-export"></a><a name="6.2"></a>
   - [6.2](#modules--single-export) Do not use default exports. Use a single named `export` which  declares all the classes, 
     functions, objects and interfaces that the module is exporting.
 

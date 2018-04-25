@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ioffice/tslint-config-ioffice.git"
+    "url": "git+https://github.com/iOffice/tslint-config-ioffice.git"
   },
   "keywords": [
     "style guide",
