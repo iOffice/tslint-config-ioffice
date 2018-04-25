@@ -3,7 +3,7 @@
 test: tcBuild
 
 preRelease: build
-        PRERELEASE=true tc-builder run
+	PRERELEASE=true tc-builder run
 
 readme: build
 	node build/tasks.js readme
