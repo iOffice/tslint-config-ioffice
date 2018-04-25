@@ -45,7 +45,7 @@ function updateConfigFile() {
   const obj = JSON.parse(contents);
   obj['rulesDirectory'] = [
     "./rules",
-    "node_modules/tslint-eslint-rules/dist/rules"
+    "../../tslint-eslint-rules/dist/rules"
   ];
   writeFileSync(configPath, JSON.stringify(obj, null, 2));
 }
