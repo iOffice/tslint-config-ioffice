@@ -7,12 +7,17 @@ import { readFileSync, writeFileSync } from "fs";
 class Builder extends TCBuilder {
   onBeforeNpmPublish(fulfill: resolution, reject: resolution): void {
     try {
-      move('build/rules', './rules');
-      updateConfigFile();
-      fulfill('Ready to publish.');
+      move('./build/rules', '.');
     } catch (err) {
-      reject('Unable to move build contents to publish.');
+      return reject('Unable to move build contents to publish.');
     }
+    try {
+      updateConfigFile();
+    } catch (err) {
+      return reject('Unable to rewrite config file.')
+    }
+
+    fulfill('Ready to publish.');
   }
 
   onTest(fulfill: resolution, reject: resolution): void {
@@ -35,13 +40,14 @@ class Builder extends TCBuilder {
  * is downloaded from the npm registry.
  */
 function updateConfigFile() {
-  const contents = readFileSync('tslint-config-ioffice.json', 'utf8');
+  const configPath = './tslint-config-ioffice.json';
+  const contents = readFileSync(configPath, 'utf8');
   const obj = JSON.parse(contents);
   obj['rulesDirectory'] = [
     "./rules",
     "node_modules/tslint-eslint-rules/dist/rules"
   ];
-  writeFileSync('package.json', JSON.stringify(obj, null, 2));
+  writeFileSync(configPath, JSON.stringify(obj, null, 2));
 }
 
 const pb = new Builder();
