@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/ioffice/tslint-config-ioffice/issues"
   },
-  "homepage": "https://github.com/ioffice/tslint-config-ioffice#readme",
+  "homepage": "https://github.com/iOffice/tslint-config-ioffice#readme",
   "peerDependencies": {
     "tslint": "^5.0.0",
     "tslint-eslint-rules": "^5.0.0"
