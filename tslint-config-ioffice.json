@@ -9,7 +9,7 @@
     }],
     "block-spacing": [true],
     "ter-prefer-arrow-callback": [true, {
-      "allowNamedFunctions": false,
+      "allowNamedFunctions": true,
       "allowUnboundThis": false
     }],
     "ter-indent": [true, 2, {
