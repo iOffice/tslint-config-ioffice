@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/iOffice/tslint-config-ioffice#readme",
   "devDependencies": {
-    "@ioffice/tc-builder": "1.1.0",
+    "@ioffice/tc-builder": "1.2.0",
     "@types/chai": "4.1.2",
     "@types/diff": "3.5.1",
     "@types/mocha": "2.2.48",
