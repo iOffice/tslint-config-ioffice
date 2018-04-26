@@ -1,18 +1,21 @@
 # Contributing
 
-All iOFFICE [npm](https://www.npmjs.com/org/ioffice) projects are managed by TeamCity. The flow
-for contributing goes as follows.
+All iOFFICE [npm](https://www.npmjs.com/org/ioffice) projects are managed by TeamCity. You may
+contribute by adding or modifying sections to the style guide.
+
+Before creating a pull request first make sure to open an issue so that others are aware of the
+problems we are trying to solve.
+
+## Modifying a section
 
 - Branch from master.
-- Add your source code in a file in the `src/main` directory.
-- Add a test file in the `src/test` directory having the same name as your source file and the
-  extension `.test.ts`.
-  - At the moment we can only run the test by including the file in `src/test/index.ts`, so make
-    sure to import the file.
-  - Note that we currently have to run all the tests and have no way of running only specific ones.
-    This is an issue that will be addressed later.
-- Make sure your tests pass by running `make test`.
+- Use the following naming convention when modifying a section on the guide: `guide/topic/section`.
+  For instance: `guide/arrows/use-them`;
+- Do your edits to the file and add rules (if necessary) to `tslint.json`. The `tslint-config-ioffice.json`
+  should only be used if you are creating a rule in this project.
+- Make sure everything is ok by running `make test`.
 - When creating a commit please follow the convention:
+  - `[guide] fixed grammar in arrows/use-them`
   - `[feat] A new feature was added`
   - `[chore] modified some build files around, modified gitignore, etc`
   - `[refactor] made some code more readble`
@@ -22,10 +25,13 @@ for contributing goes as follows.
   - `[other] some useful message`
 
   A tag with the convention `[tag:subtitle] message` is also accepted. The point of using a tag
-  is to be able to filter out the commit messages when creating a `CHANGELOG`. These make it easier
-  to generate a summary of the changes.
-
+  is to be able to filter out the commit messages when updating the `CHANGELOG`. These make it
+  easier to generate a summary of the changes.
 - Make a pull request.
+
+You can make sure that the readme is ok by running `make readme` but please do not commit
+the changes to the file. The README file should only be generated during the release process so that
+the tslint configuration reflects the changes in the README.
 
 ## Pre-releasing
 
@@ -44,8 +50,9 @@ To make a release do the following:
 - Create the branch `release` from the `master` branch.
 - Update the `package.json` with the proper version number.
 - Update `CHANGELOG.md` documenting all the changes.
+- run `make readme` to generate the README file.
 - Create a pull request.
 - If everything is good, then merge.
 
 Shortly after the branch is merged, TeamCity will do another build and the package will be
-released to bartifcatory or npm.
+released to npm.
