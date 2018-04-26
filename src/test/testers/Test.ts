@@ -163,7 +163,7 @@ function formatTestResult(test: TestResult): string {
   if (test.outputExpected !== test.outputFound) {
     content.push(`    ${'Fixer output mismatch'.red}:`);
     const diff = jsdiff.diffLines(test.outputExpected, test.outputFound);
-    diff.forEach(function(part){
+    diff.forEach((part) => {
       // green for additions, red for deletion, grey for common parts
       const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
       const newParts = part.value[color].split('\n');

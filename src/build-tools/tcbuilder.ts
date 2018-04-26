@@ -1,4 +1,11 @@
-import { resolution, TCBuilder, move } from '@ioffice/tc-builder';
+import {
+  resolution,
+  TCBuilder,
+  move,
+  getProjectStatus,
+  compileProject,
+  formatProjectResults,
+} from '@ioffice/tc-builder';
 import { rulesTestOrder } from '../test/rules';
 import { GuideTester, RulesTester } from '../test';
 import { topicOrder } from '../guide';
@@ -21,11 +28,22 @@ class Builder extends TCBuilder {
   }
 
   onTest(fulfill: resolution, reject: resolution): void {
+    // Testing the rules
     const ruleTester = new RulesTester(rulesTestOrder);
     const rulesResults = ruleTester.runTests();
     if (rulesResults.filter(x => x.status === 'failed').length) {
       return reject('RulesTester found failed tests');
     }
+
+    // Testing the code with the new rules
+    const projectResults = compileProject('./tsconfig.json', './tslint-config-ioffice.json');
+    const projectStatus = getProjectStatus(projectResults, {});
+    if (projectStatus.status !== 0) {
+      console.log(formatProjectResults(projectStatus, projectResults));
+      return reject('Project code does not adhere to the new rules');
+    }
+
+    // Testing the guide
     const guideTester = new GuideTester('iOffice TypeScript Style Guide', topicOrder);
     const guideResults = guideTester.runTests();
     if (guideResults.filter(x => x.status === 'failed').length) {
@@ -41,12 +59,14 @@ class Builder extends TCBuilder {
  */
 function updateConfigFile() {
   const configPath = './tslint-config-ioffice.json';
-  const contents = readFileSync(configPath, 'utf8');
-  const obj = JSON.parse(contents);
+  const obj = JSON.parse(readFileSync(configPath, 'utf8'));
+  const tslint = JSON.parse(readFileSync('./tsconfig.json', 'utf8'))
   obj['rulesDirectory'] = [
     "./rules",
     "../../tslint-eslint-rules/dist/rules"
   ];
+  Object.assign(obj['rules'], tslint['rules']);
+
   writeFileSync(configPath, JSON.stringify(obj, null, 2));
 }
 

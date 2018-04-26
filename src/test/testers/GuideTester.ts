@@ -3,7 +3,11 @@ import { SectionTests } from './SectionTests';
 import { TestResult } from './Test';
 import { ISection } from '../../util';
 
-const LINT_CONFIG = require('../../../tslint-config-ioffice.json');
+// Combining the configurations in order to test the whole guide
+const IOFFICE_CONFIG = require('../../../tslint-config-ioffice.json');
+const PROJECT_CONFIG = require('../../../tslint.json');
+const LINT_CONFIG = Object.assign({}, PROJECT_CONFIG);
+Object.assign(LINT_CONFIG['rules'], IOFFICE_CONFIG['rules']);
 
 class GuideTester extends BaseTester {
   public guideName: string;
@@ -67,7 +71,6 @@ class GuideTester extends BaseTester {
   }
 }
 
-
 export {
   GuideTester,
-}
+};

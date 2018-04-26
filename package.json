@@ -46,6 +46,7 @@
     "typedoc": "0.11.1",
     "typescript": "2.7.2"
   },
+  "tcBuilder": {},
   "publishConfig": {
     "registry": "https://registry.npmjs.com"
   }
