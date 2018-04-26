@@ -1,8 +1,8 @@
 import { dedent } from 'tslint/lib/utils';
-import { Failure } from './failure';
-import { Position } from './position';
-import { TestResult, formatTestResult } from './test';
-import { GuideTester } from './guideTester';
+import { Failure } from './Failure';
+import { Position } from './Position';
+import { TestResult, formatTestResult } from './Test';
+import { GuideTester } from './GuideTester';
 import { RuleTester } from './RuleTester';
 import { RulesTester } from './RulesTester';
 
