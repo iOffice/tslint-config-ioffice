@@ -9,9 +9,15 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 
-## [0.0.1] - Date of release
-Description
+## [0.1.0] - April 26, 2018
+- First release of the guide.
+- There is only very basic rules.
+
+### Rules
+- `io-export-style`: This rule is very specific to iOffice and does not have any options. This rule
+  is meant to disallow the use of multiple `export` keywords and to disallow the user of default
+  exports.
 
 
-[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.0.1...HEAD
-[0.0.1]: https://github.com/ioffice/tslint-config-ioffice/compare/<hash/tag>...0.0.1
+[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/ioffice/tslint-config-ioffice/compare/d35148ee5a67da205b80ea2f8da243e02977b297...0.1.0

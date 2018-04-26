@@ -22,8 +22,17 @@
 ## Functions
 
   <a name="functions--unused-parameters"></a><a name="1.1"></a>
-  - [1.1](#functions--unused-parameters) Remove them. To prevent them make sure to use `noUnusedParameters` in your
+  - [1.1](#functions--unused-parameters) **Unused Parameters**: Remove them. To prevent them make sure to use `noUnusedParameters` in your
     `tsconfig.json` file.
+
+
+    > We may end up with parameters that are not used when we refactor. If we keep them we risk
+    > having incorrect documentation and all sort of confusions.
+    > 
+    > In some cases, when creating listeners a function may require a certain signature which will
+    > undoubtedly bring us unused parameters. When this is the case simply name the placeholder
+    > variables with a leading underscore.
+    > 
 
     ```ts
     // bad
@@ -42,8 +51,16 @@
 ## Arrow Functions
 
   <a name="arrows--use-them"></a><a name="2.1"></a>
-  - [2.1](#arrows--use-them) When you must use function expressions (as when passing an anonymous function), use arrow
+  - [2.1](#arrows--use-them) **Use Them**: When you must use function expressions (as when passing an anonymous function), use arrow
     function notation.
+
+
+    > Why? It creates a version of the function that executes in the context of this, which is usually
+    > what you want, and is a more concise syntax.
+    > 
+    > Why not? If you have a fairly complicated function, you might move that logic out into its own
+    > function declaration.
+    > 
 
     ```ts
     // bad
@@ -69,7 +86,7 @@
 ## Blocks
 
   <a name="blocks--braces"></a><a name="3.1"></a>
-  - [3.1](#blocks--braces) Use braces with all multi-line blocks.
+  - [3.1](#blocks--braces) **Braces**: Use braces with all multi-line blocks.
 
     ```ts
     // bad
@@ -94,7 +111,7 @@
     ```
 
   <a name="blocks--cuddled-elses"></a><a name="3.2"></a>
-  - [3.2](#blocks--cuddled-elses) If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
+  - [3.2](#blocks--cuddled-elses) **Cuddled Elses**: If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
     your `if` block's closing brace.
 
     ```ts
@@ -121,7 +138,7 @@
 ## Whitespace
 
   <a name="whitespace--spaces"></a><a name="4.1"></a>
-  - [4.1](#whitespace--spaces) Use soft tabs set to 2 spaces.
+  - [4.1](#whitespace--spaces) **Spaces**: Use soft tabs set to 2 spaces.
 
     ```ts
     // bad
@@ -141,7 +158,7 @@
     ```
 
   <a name="whitespace--in-braces"></a><a name="4.2"></a>
-  - [4.2](#whitespace--in-braces) Add spaces inside curly braces.
+  - [4.2](#whitespace--in-braces) **In Braces**: Add spaces inside curly braces.
 
     ```ts
     // bad
@@ -156,7 +173,7 @@
 ## Commas
 
   <a name="commas--leading-trailing"></a><a name="5.1"></a>
-  - [5.1](#commas--leading-trailing) Leading commas: **Nope**.
+  - [5.1](#commas--leading-trailing) **Leading Trailing**: Leading commas: **Nope**.
 
     ```ts
     // bad
@@ -195,8 +212,12 @@
 ## Modules
 
   <a name="modules--use-them"></a><a name="6.1"></a>
-  - [6.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system. You can always
+  - [6.1](#modules--use-them) **Use Them**: Always use modules (`import`/`export`) over a non-standard module system. You can always
     transpile to your preferred module system.
+
+
+    > Why? Modules are the future
+    > 
 
     ```ts
     // bad
@@ -218,8 +239,17 @@
     ```
 
   <a name="modules--single-export"></a><a name="6.2"></a>
-  - [6.2](#modules--single-export) Do not use default exports. Use a single named `export` which  declares all the classes, 
+  - [6.2](#modules--single-export) **Single Export**: Do not use default exports. Use a single named `export` which  declares all the classes, 
     functions, objects and interfaces that the module is exporting.
+
+
+    > Why? Named `imports`/`exports` promote clarity. In addition, current tooling differs on the
+    > correct way to handle default `imports`/`exports`. Avoiding them all together can help
+    > avoid tooling bugs and conflicts.
+    > 
+    > Using a single named `export` allows us to see in one place all the objects that we are
+    > exporting.
+    > 
 
     ```ts
     // bad
