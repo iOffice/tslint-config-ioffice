@@ -5,8 +5,14 @@ import { topicOrder } from '../guide';
 function createSection(num: string, ref: string, sec: ISection, lines: string[]): void {
   lines.push(`  <a name="${ref}"></a><a name="${num}"></a>`);
   const rule = sec.rule.trim().split('\n').join('\n    ');
-  lines.push(`  - [${num}](#${ref}) ${rule}`);
+  const reason = (sec.reason || '').split('\n').join('\n    > ');
+  const name = sec.name.trim();
+  lines.push(`  - [${num}](#${ref}) **${name}**: ${rule}`);
   lines.push('');
+  if (reason) {
+    lines.push(reason);
+    lines.push('');
+  }
 
   sec.examples.forEach((example: IExample) => {
     const code = example.code.trim().split('\n').join('\n    ');
