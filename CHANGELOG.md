@@ -10,8 +10,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
 ## [0.2.0] - April 27, 2018
-- Added `tsconfig.core.json`. This should provides configuration related to errors in the code.
-  Other configuration may use it by extending from 
+- Added `tsconfig.core.json`. This should provide a configuration related to errors in the code.
+  Other configurations may use it by extending from 
   `./node_modules/@ioffice/tslint-config-ioffice/tsconfig.core.json`.
 
 ### Tslint Rules
