@@ -1,20 +1,10 @@
 {
+  "extends": "./tsconfig.core.json",
   "compilerOptions": {
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es5",
     "declaration": true,
     "noEmit": false,
-    "lib": ["es6"],
+    "target": "es5",
+    "lib": ["es7", "dom"],
     "outDir": "./build"
   },
   "files": [

@@ -208,9 +208,9 @@ ruleTester.addSection('single', [
       [2, 0, 'single'],
     ])
   },
-])
+]);
 
 export {
   RuleTester,
   ruleTester,
-}
+};

@@ -43,4 +43,4 @@ class SectionTests {
 
 export {
   SectionTests,
-}
+};

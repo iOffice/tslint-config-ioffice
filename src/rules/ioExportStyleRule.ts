@@ -41,7 +41,7 @@ class Rule extends Lint.Rules.AbstractRule {
     const options: RuleOptions = {
       single: typeof obj.single !== 'undefined' ? !!obj.single : true,
       allowDefault: obj.allowDefault !== false,
-    }
+    };
     return this.applyWithWalker(new RuleWalker(sourceFile, RULE_NAME, options));
   }
 }
@@ -132,4 +132,4 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
 
 export {
   Rule,
-}
+};

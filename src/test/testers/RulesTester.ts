@@ -57,4 +57,4 @@ class RulesTester extends BaseTester {
 
 export {
   RulesTester,
-}
+};

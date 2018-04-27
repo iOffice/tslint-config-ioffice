@@ -3,7 +3,7 @@ import { TestResult, formatTestResult } from './Test';
 class BaseTester {
   protected events: { [ key: string ]: Function } = {
     'run-topic': ({ name }: any) => {
-      process.stdout.write(`\n  ${name}\n`)
+      process.stdout.write(`\n  ${name}\n`);
     },
     'run-section': ({ name, status, failed }: any) => {
       const buffer: string[] = [];
@@ -11,7 +11,7 @@ class BaseTester {
         buffer.push(`    ${'✓'.green} ${name}\n`);
       } else {
         buffer.push(`    ${'✗'.red} ${name}: `);
-        buffer.push(`${failed.length} failed`.red)
+        buffer.push(`${failed.length} failed`.red);
         buffer.push('\n');
       }
       process.stdout.write(buffer.join(''));
@@ -31,7 +31,7 @@ class BaseTester {
   };
 
   on(type: string, fn: Function): this {
-    this.events[type] = fn
+    this.events[type] = fn;
     return this;
   }
 
@@ -43,4 +43,4 @@ class BaseTester {
 
 export {
   BaseTester,
-}
+};
