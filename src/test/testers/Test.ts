@@ -175,7 +175,6 @@ function formatTestResult(test: TestResult): string {
   return content.join('\n');
 }
 
-
 export {
   Test,
   TestResult,
