@@ -4,6 +4,7 @@ import * as arrows from './arrows';
 import * as whitespace from './whitespace';
 import * as blocks from './blocks';
 import * as commas from './commas';
+import * as semicolons from './semicolons';
 import * as modules from './modules';
 import * as classes from './classes';
 
@@ -15,6 +16,7 @@ const topicOrder: any[] = [
   blocks,
   whitespace,
   commas,
+  semicolons,
   modules,
 ];
 
