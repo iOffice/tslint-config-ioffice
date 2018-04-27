@@ -41,7 +41,7 @@ class GuideTester extends BaseTester {
               moduleSec.reference,
               moduleSec.examples,
               LINT_CONFIG,
-            )
+            );
             const sectionResults: TestResult[] = [];
             section.tests.forEach((x, index) => {
               if (!runIndex || runIndex === index.toString()) {

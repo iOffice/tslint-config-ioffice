@@ -21,7 +21,7 @@ class Builder extends TCBuilder {
     try {
       updateConfigFile();
     } catch (err) {
-      return reject('Unable to rewrite config file.')
+      return reject('Unable to rewrite config file.');
     }
 
     fulfill('Ready to publish.');
@@ -60,7 +60,7 @@ class Builder extends TCBuilder {
 function updateConfigFile() {
   const configPath = './tslint-config-ioffice.json';
   const obj = JSON.parse(readFileSync(configPath, 'utf8'));
-  const tslint = JSON.parse(readFileSync('./tslint.json', 'utf8'))
+  const tslint = JSON.parse(readFileSync('./tslint.json', 'utf8'));
   obj['rulesDirectory'] = [
     "./rules",
     "../../tslint-eslint-rules/dist/rules"

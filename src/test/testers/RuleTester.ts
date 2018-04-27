@@ -17,4 +17,4 @@ class RuleTester {
 
 export {
   RuleTester,
-}
+};

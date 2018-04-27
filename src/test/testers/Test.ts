@@ -14,10 +14,10 @@ interface TestResult {
   fileName: string;
   status: 'passed' | 'failed';
   code: string;
-  outputExpected: string,
-  outputFound: string,
-  errorsExpected: LintFailure[],
-  errorsFound: LintFailure[],
+  outputExpected: string;
+  outputFound: string;
+  errorsExpected: LintFailure[];
+  errorsFound: LintFailure[];
 }
 
 class LintTest implements Test {
@@ -181,4 +181,4 @@ export {
   LintTest,
   formatTestResult,
   Position,
-}
+};

@@ -52,7 +52,7 @@ function createReadme(): string {
     '# iOffice TypeScript Style Guide\n',
   ];
   lines.push(...toc);
-  lines.push('')
+  lines.push('');
   lines.push(...topics);
   return lines.join('\n');
 }
