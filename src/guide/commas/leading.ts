@@ -42,6 +42,8 @@ const section: ISection = {
         };
         `,
       errors: expecting([
+        [5, 9, 'trailing-comma', 'Missing trailing comma'],
+        [20, 27, 'trailing-comma', 'Missing trailing comma'],
       ]),
     },
   ],
