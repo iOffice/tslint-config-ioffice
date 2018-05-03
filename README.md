@@ -20,7 +20,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
       1. [Spaces](#whitespace--spaces)
       2. [In Braces](#whitespace--in-braces)
   7. [Commas](#commas)
-      1. [Leading Trailing](#commas--leading-trailing)
+      1. [Leading Commas](#commas--leading-commas)
+      2. [Trailing Commas](#commas--trailing)
   8. [Semicolons](#semicolons)
       1. [Required](#semicolons--required)
   9. [Modules](#modules)
@@ -240,8 +241,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
 
 ## Commas
 
-  <a name="commas--leading-trailing"></a><a name="7.1"></a>
-  - [7.1](#commas--leading-trailing) **Leading Trailing**: Leading commas: **Nope**.
+  <a name="commas--leading-commas"></a><a name="7.1"></a>
+  - [7.1](#commas--leading-commas) **Leading Commas**: **Nope**.
 
     ```ts
     // bad
@@ -273,6 +274,103 @@ Most sections we see here will be taken straight from their guide and slowly ada
       birthYear: 1815,
       superPower: 'computers',
     };
+    ```
+
+  <a name="commas--trailing"></a><a name="7.2"></a>
+  - [7.2](#commas--trailing) **Trailing Commas**: Additional trailing comma: **Yup**.
+
+
+    > Why? This leads to cleaner git diffs. Also, the Typescript transpiler will remove the additional
+    > trailing comma in the transpiled code which means you don’t have to worry about the trailing
+    > comma problem in legacy browsers.
+    >   
+
+    ```ts
+    // bad
+    const hero = {
+      firstName: 'Dana',
+      lastName: 'Scully'
+    };
+    
+    const heroes = [
+      'Batman',
+      'Superman'
+    ];
+    
+    // good
+    const hero = {
+      firstName: 'Dana',
+      lastName: 'Scully',
+    };
+    
+    const heroes = [
+      'Batman',
+      'Superman',
+    ];
+    ```
+
+    ```ts
+    // bad
+    function createHero(
+      firstName,
+      lastName,
+      inventorOf
+    ) {
+      // does nothing
+    }
+    
+    // good
+    function createHero(
+      firstName,
+      lastName,
+      inventorOf,
+    ) {
+      // does nothing
+    }
+    
+    // good (note that a comma must not appear after a "rest" element)
+    function createHero(
+      firstName,
+      lastName,
+      inventorOf,
+      ...heroArgs
+    ) {
+      // does nothing
+    }
+    ```
+
+    ```ts
+    // bad
+    createHero(
+      firstName,
+      lastName,
+      inventorOf
+    );
+    
+    // good
+    createHero(
+      firstName,
+      lastName,
+      inventorOf,
+    );
+    
+    // good (note that a comma must not appear after a "rest" element)
+    createHero(
+      firstName,
+      lastName,
+      inventorOf,
+      // TODO: Remove next tslint disable once the rule is fixed.
+      // tslint:disable-next-line
+      ...heroArgs
+    );
+    ```
+
+    ```ts
+    // good
+    createHero(firstName, lastName, inventorOf);
+    
+    // bad
+    createHero(firstName, lastName, inventorOf, );
     ```
 
 **[⬆ back to top](#table-of-contents)**

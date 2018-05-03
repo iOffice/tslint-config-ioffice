@@ -9,6 +9,10 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 
+## [0.3.0] - May 3, 2018
+- Added `trailing-comma` rule.
+
+
 ## [0.2.0] - April 27, 2018
 - Added `tsconfig.core.json`. This should provide a configuration related to errors in the code.
   Other configurations may use it by extending from 
@@ -29,6 +33,7 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
   exports.
 
 
-[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/ioffice/tslint-config-ioffice/compare/d35148ee5a67da205b80ea2f8da243e02977b297...0.1.0
