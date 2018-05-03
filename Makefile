@@ -20,6 +20,9 @@ testRules: build
 tcBuild: info build
 	node ./build/buildTools/tcBuilder.js
 
+docs:
+	echo 'Nothing to do for now'
+
 ## Dependencies
 
 build: FORCE
