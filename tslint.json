@@ -3,6 +3,14 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never",
+        "esSpecCompliant": true
+      }
+    ],
     "semicolon": [true, "always"],
     "no-inferrable-types": [true, "ignore-params"],
     "brace-style": [true, "1tbs", {

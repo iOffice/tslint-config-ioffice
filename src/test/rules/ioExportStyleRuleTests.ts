@@ -14,7 +14,7 @@ function expecting(errors: [number, number, string][]): Failure[] {
       ruleName: ruleTester.ruleName,
       failure: MSG[err[2]],
       startPosition: new Position(err[0], err[1]),
-      endPosition: new Position()
+      endPosition: new Position(),
     };
   });
 }
@@ -78,7 +78,7 @@ ruleTester.addSection('no-default-1', [
       [2, 0, 'single'],
       [4, 7, 'noDefault'],
       [5, 0, 'missing'],
-    ])
+    ]),
   },
   {
     code: dedent`
@@ -96,7 +96,7 @@ ruleTester.addSection('no-default-1', [
       [1, 0, 'single'],
       [3, 0, 'missing'],
       [2, 7, 'noDefault'],
-    ])
+    ]),
   },
   {
     code: dedent`
@@ -129,7 +129,7 @@ ruleTester.addSection('no-default-1', [
       [4, 7, 'noDefault'],
       [6, 0, 'single'],
       [8, 0, 'all'],
-    ])
+    ]),
   },
 ]);
 
@@ -141,7 +141,7 @@ ruleTester.addSection('no-default-2', [
       `,
     errors: expecting([
       [2, 7, 'noDefault'],
-    ])
+    ]),
   },
   {
     code: dedent`
@@ -177,7 +177,7 @@ ruleTester.addSection('no-default-2', [
       [1, 7, 'noDefault'],
       [2, 0, 'single'],
       [3, 0, 'missing'],
-    ])
+    ]),
   },
   {
     code: dedent`
@@ -185,8 +185,8 @@ ruleTester.addSection('no-default-2', [
       `,
     errors: expecting([
       [1, 7, 'noDefault'],
-    ])
-  }
+    ]),
+  },
 ]);
 
 ruleTester.addSection('single', [
@@ -196,7 +196,7 @@ ruleTester.addSection('single', [
       export { a };
       `,
     errors: expecting([
-    ])
+    ]),
   },
   {
     code: dedent`
@@ -206,7 +206,7 @@ ruleTester.addSection('single', [
       `,
     errors: expecting([
       [2, 0, 'single'],
-    ])
+    ]),
   },
 ]);
 

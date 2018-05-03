@@ -68,7 +68,7 @@ class LintFailure implements Failure {
       obj.ruleName,
       obj.failure,
       this.startPosition.getComparablePosition(obj.startPosition),
-      this.endPosition.getComparablePosition(obj.endPosition)
+      this.endPosition.getComparablePosition(obj.endPosition),
     );
   }
 }

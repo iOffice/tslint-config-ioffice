@@ -32,7 +32,7 @@ class LintTest implements Test {
     code: string,
     output: string,
     options: Lint.Configuration.IConfigurationFile,
-    errors: LintFailure[]
+    errors: LintFailure[],
   ) {
     this.fileName = fName;
     this.code = code;
@@ -62,7 +62,7 @@ class LintTest implements Test {
         error.ruleName,
         error.failure,
         new Position(start.line, start.character, start.position),
-        new Position(end.line, end.character, end.position)
+        new Position(end.line, end.character, end.position),
       );
     });
 
@@ -72,7 +72,7 @@ class LintTest implements Test {
   private getTestResults(
     expectedErrors: LintFailure[],
     foundErrors: LintFailure[],
-    linter: Lint.Linter
+    linter: Lint.Linter,
   ): TestResult {
     const errorsExpected = this.arrayDiff(expectedErrors, foundErrors);
     const errorsFound = this.arrayDiff(foundErrors, expectedErrors, false);
@@ -102,7 +102,7 @@ class LintTest implements Test {
   private arrayDiff(
     source: LintFailure[],
     target: LintFailure[],
-    compareToTarget: boolean = true
+    compareToTarget: boolean = true,
   ): LintFailure[] {
     return source.filter(item => {
       return this.findIndex(target, item, compareToTarget) === -1;

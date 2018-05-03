@@ -63,7 +63,7 @@ function updateConfigFile() {
   const tslint = JSON.parse(readFileSync('./tslint.json', 'utf8'));
   obj['rulesDirectory'] = [
     "./rules",
-    "../../tslint-eslint-rules/dist/rules"
+    "../../tslint-eslint-rules/dist/rules",
   ];
   Object.assign(obj['rules'], tslint['rules']);
 

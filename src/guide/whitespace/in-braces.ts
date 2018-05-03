@@ -20,7 +20,7 @@ const section: ISection = {
         `,
       errors: expecting([
         [2, 12, 'object-curly-spacing', 'A space is required after \'{\''],
-        [2, 26, 'object-curly-spacing', 'A space is required before \'}\'']
+        [2, 26, 'object-curly-spacing', 'A space is required before \'}\''],
       ]),
     },
   ],

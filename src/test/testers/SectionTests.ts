@@ -11,7 +11,7 @@ class SectionTests {
     topicName: string,
     sectionName: string,
     tests: (Test | string)[],
-    lintConfig?: Lint.Configuration.IConfigurationFile
+    lintConfig?: Lint.Configuration.IConfigurationFile,
   ) {
     this.topicName = topicName;
     this.sectionName = sectionName;
@@ -33,7 +33,7 @@ class SectionTests {
           error.ruleName,
           error.failure,
           error.startPosition,
-          error.endPosition
+          error.endPosition,
         );
       });
       return new LintTest(codeFileName, test.code, test.output || '', configFile, failures);
