@@ -1,10 +1,10 @@
 import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
-  name: 'Leading Trailing',
-  reference: 'leading-trailing',
+  name: 'Leading Commas',
+  reference: 'leading-commas',
   rule: dedent`
-    Leading commas: **Nope**.
+    **Nope**.
     `,
   tslint: {
   },

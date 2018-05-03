@@ -21,7 +21,7 @@ class BaseTester {
         '',
         `  ${passedCount} passing`.green,
         `  ${failedCount} failing`.red,
-        ''
+        '',
       ];
       failedTests.forEach((test: TestResult) => {
         buffer.push(formatTestResult(test));

@@ -24,7 +24,7 @@ function expecting(errors: [number, number, string, string][]): Failure[] {
       ruleName: err[2],
       failure: err[3],
       startPosition: new Position(err[0], err[1]),
-      endPosition: new Position()
+      endPosition: new Position(),
     };
   });
 }

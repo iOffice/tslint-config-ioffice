@@ -94,7 +94,7 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
             if (index < lastIndex) {
               const fix = Lint.Replacement.deleteText(
                 declaration.getStart(this.sourceFile),
-                declaration.getText(this.sourceFile).length + 1
+                declaration.getText(this.sourceFile).length + 1,
               );
               this.addFailureAtNode(declaration, MSG.single, fix);
             }

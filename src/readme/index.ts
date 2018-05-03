@@ -51,7 +51,7 @@ function createReadme(): string {
     '<!-- THIS IS AN AUTO-GENERATED FILE - DO NOT MODIFY MANUALLY -->',
     '# iOffice TypeScript Style Guide\n',
     'Disclaimer: This guide is inspired by the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).',
-    'Most sections we see here will be taken straight from their guide and slowly adapted to the typescript language.'
+    'Most sections we see here will be taken straight from their guide and slowly adapted to the typescript language.',
   ];
   lines.push(...toc);
   lines.push('');

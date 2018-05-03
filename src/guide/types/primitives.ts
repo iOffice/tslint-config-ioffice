@@ -46,7 +46,7 @@ const section: ISection = {
         console.log(foo, bar);  // => 1, 9
         `,
       errors: expecting([
-        [2, 11, 'no-inferrable-types', 'Type number trivially inferred from a number literal, remove type annotation']
+        [2, 11, 'no-inferrable-types', 'Type number trivially inferred from a number literal, remove type annotation'],
       ]),
     },
   ],
