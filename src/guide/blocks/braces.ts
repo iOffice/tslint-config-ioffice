@@ -22,7 +22,13 @@ const section: ISection = {
         if (test) {
           return false;
         }
-        
+        `,
+      errors: expecting([
+        [2, 0, 'curly', 'if statements must be braced'],
+      ]),
+    },
+    {
+      code: dedent`
         // bad
         function foo() { return false; }
         
@@ -30,10 +36,10 @@ const section: ISection = {
         function bar() {
           return false;
         }
-        `,
+      `,
       errors: expecting([
-        [14, 17, 'brace-style', 'Statement inside of curly braces should be on next line.'],
-        [14, 31, 'brace-style', 'Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.'],
+        [2, 17, 'brace-style', 'Statement inside of curly braces should be on next line.'],
+        [2, 31, 'brace-style', 'Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.'],
       ]),
     },
   ],

@@ -11,6 +11,7 @@
         "esSpecCompliant": true
       }
     ],
+    "curly": [true, "ignore-same-line"],
     "semicolon": [true, "always"],
     "no-inferrable-types": [true, "ignore-params"],
     "brace-style": [true, "1tbs", {
