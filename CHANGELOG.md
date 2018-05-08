@@ -8,6 +8,10 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.0] - May 7, 2018
+- Added rules to check the "Blocks" section.
+- Added "References" section.
+
 
 ## [0.3.1] - May 3, 2018
 - Added `trailing-comma` rule.
@@ -33,7 +37,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
   exports.
 
 
-[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.3.1...HEAD
+[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/ioffice/tslint-config-ioffice/compare/0.2.0...0.3.1
 [0.2.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/ioffice/tslint-config-ioffice/compare/d35148ee5a67da205b80ea2f8da243e02977b297...0.1.0
