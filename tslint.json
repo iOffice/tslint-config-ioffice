@@ -3,6 +3,8 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
+    "no-var-keyword": true,
+    "prefer-const": [true, { "destructuring": "all" }],
     "trailing-comma": [
       true,
       {

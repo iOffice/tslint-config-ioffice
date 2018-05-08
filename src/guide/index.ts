@@ -1,4 +1,5 @@
 import * as types from './types';
+import * as references from './references';
 import * as functions from './functions';
 import * as arrows from './arrows';
 import * as whitespace from './whitespace';
@@ -10,6 +11,7 @@ import * as classes from './classes';
 
 const topicOrder: any[] = [
   types,
+  references,
   functions,
   classes,
   arrows,
