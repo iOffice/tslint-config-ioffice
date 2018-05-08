@@ -8,23 +8,27 @@ Most sections we see here will be taken straight from their guide and slowly ada
   1. [Types](#types)
       1. [Primitives](#types--primitives)
       2. [Complex](#types--complex)
-  2. [Functions](#functions)
+  2. [References](#references)
+      1. [Prefer Const](#references--prefer-const)
+      2. [Disallow Var](#references--disallow-var)
+  3. [Functions](#functions)
       1. [Unused Parameters](#functions--unused-parameters)
-  3. [Classes](#classes)
-  4. [Arrow Functions](#arrows)
+  4. [Classes](#classes)
+  5. [Arrow Functions](#arrows)
       1. [Use Them](#arrows--use-them)
-  5. [Blocks](#blocks)
+  6. [Blocks](#blocks)
       1. [Braces](#blocks--braces)
       2. [Cuddled Elses](#blocks--cuddled-elses)
-  6. [Whitespace](#whitespace)
+      3. [No Else Return](#blocks--no-else-return)
+  7. [Whitespace](#whitespace)
       1. [Spaces](#whitespace--spaces)
       2. [In Braces](#whitespace--in-braces)
-  7. [Commas](#commas)
+  8. [Commas](#commas)
       1. [Leading Commas](#commas--leading-commas)
       2. [Trailing Commas](#commas--trailing)
-  8. [Semicolons](#semicolons)
+  9. [Semicolons](#semicolons)
       1. [Required](#semicolons--required)
-  9. [Modules](#modules)
+  10. [Modules](#modules)
       1. [Use Them](#modules--use-them)
       2. [Single Export](#modules--single-export)
 
@@ -84,10 +88,67 @@ Most sections we see here will be taken straight from their guide and slowly ada
 
 **[⬆ back to top](#table-of-contents)**
 
+## References
+
+  <a name="references--prefer-const"></a><a name="2.1"></a>
+  - [2.1](#references--prefer-const) **Prefer Const**: Use `const` for all of your references; avoid using `var`.
+
+
+    > Why? This ensures that you can’t reassign your references, which can lead to bugs and difficult
+    > to comprehend code.
+    > 
+
+    ```ts
+    // bad
+    var a = 1;
+    var b = 2;
+    
+    // good
+    const a = 1;
+    const b = 2;
+    ```
+
+    ```ts
+    // bad
+    function printPI() {
+      let pi = 3.14;
+      console.log(pi);
+    }
+    
+    // good
+    function printPI() {
+      const pi = 3.14;
+      console.log(pi);
+    }
+    ```
+
+  <a name="references--disallow-var"></a><a name="2.2"></a>
+  - [2.2](#references--disallow-var) **Disallow Var**: If you must reassign references, use `let` instead of `var`/
+
+
+    > Why? `let` is block-scoped rather than function-scoped like `var`.
+    > 
+
+    ```ts
+    // bad
+    var count = 1;
+    if (true) {
+      count += 1;
+    }
+    
+    // good, use the let.
+    let count = 1;
+    if (true) {
+      count += 1;
+    }
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
 ## Functions
 
-  <a name="functions--unused-parameters"></a><a name="2.1"></a>
-  - [2.1](#functions--unused-parameters) **Unused Parameters**: Remove them. To prevent them make sure to use `noUnusedParameters` in your
+  <a name="functions--unused-parameters"></a><a name="3.1"></a>
+  - [3.1](#functions--unused-parameters) **Unused Parameters**: Remove them. To prevent them make sure to use `noUnusedParameters` in your
     `tsconfig.json` file.
 
 
@@ -119,8 +180,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
 
 ## Arrow Functions
 
-  <a name="arrows--use-them"></a><a name="4.1"></a>
-  - [4.1](#arrows--use-them) **Use Them**: When you must use function expressions (as when passing an anonymous function), use arrow
+  <a name="arrows--use-them"></a><a name="5.1"></a>
+  - [5.1](#arrows--use-them) **Use Them**: When you must use function expressions (as when passing an anonymous function), use arrow
     function notation.
 
 
@@ -154,8 +215,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
 
 ## Blocks
 
-  <a name="blocks--braces"></a><a name="5.1"></a>
-  - [5.1](#blocks--braces) **Braces**: Use braces with all multi-line blocks.
+  <a name="blocks--braces"></a><a name="6.1"></a>
+  - [6.1](#blocks--braces) **Braces**: Use braces with all multi-line blocks.
 
     ```ts
     // bad
@@ -169,7 +230,9 @@ Most sections we see here will be taken straight from their guide and slowly ada
     if (test) {
       return false;
     }
-    
+    ```
+
+    ```ts
     // bad
     function foo() { return false; }
     
@@ -179,8 +242,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
     }
     ```
 
-  <a name="blocks--cuddled-elses"></a><a name="5.2"></a>
-  - [5.2](#blocks--cuddled-elses) **Cuddled Elses**: If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
+  <a name="blocks--cuddled-elses"></a><a name="6.2"></a>
+  - [6.2](#blocks--cuddled-elses) **Cuddled Elses**: If you're using multi-line blocks with `if` and `else`, put `else` on the same line as
     your `if` block's closing brace.
 
     ```ts
@@ -202,12 +265,83 @@ Most sections we see here will be taken straight from their guide and slowly ada
     }
     ```
 
+  <a name="blocks--no-else-return"></a><a name="6.3"></a>
+  - [6.3](#blocks--no-else-return) **No Else Return**: If an `if` block always executes a `return` statement, the subsequent `else` block is 
+    unnecessary. A `return` in an `else if` block following an `if` block that contains a 
+    `return` can be separated into multiple if blocks.
+
+    ```ts
+    // bad
+    function foo() {
+      if (x) {
+        return x;
+      } else {
+        return y;
+      }
+    }
+    
+    // good
+    function foo() {
+      if (x) {
+        return x;
+      }
+    
+      return y;
+    }
+    ```
+
+    ```ts
+    // bad
+    function cats() {
+      if (x) {
+        return x;
+      } else if (y) {
+        return y;
+      }
+    }
+    
+    // good
+    function cats() {
+      if (x) {
+        return x;
+      }
+    
+      if (y) {
+        return y;
+      }
+    }
+    ```
+
+    ```ts
+    // bad
+    function dogs() {
+      if (x) {
+        return x;
+      } else {
+        if (y) {
+          return y;
+        }
+      }
+    }
+    
+    // good
+    function dogs() {
+      if (x) {
+        if (z) {
+          return y;
+        }
+      } else {
+        return z;
+      }
+    }
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Whitespace
 
-  <a name="whitespace--spaces"></a><a name="6.1"></a>
-  - [6.1](#whitespace--spaces) **Spaces**: Use soft tabs set to 2 spaces.
+  <a name="whitespace--spaces"></a><a name="7.1"></a>
+  - [7.1](#whitespace--spaces) **Spaces**: Use soft tabs set to 2 spaces.
 
     ```ts
     // bad
@@ -226,8 +360,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
     }
     ```
 
-  <a name="whitespace--in-braces"></a><a name="6.2"></a>
-  - [6.2](#whitespace--in-braces) **In Braces**: Add spaces inside curly braces.
+  <a name="whitespace--in-braces"></a><a name="7.2"></a>
+  - [7.2](#whitespace--in-braces) **In Braces**: Add spaces inside curly braces.
 
     ```ts
     // bad
@@ -241,8 +375,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
 
 ## Commas
 
-  <a name="commas--leading-commas"></a><a name="7.1"></a>
-  - [7.1](#commas--leading-commas) **Leading Commas**: **Nope**.
+  <a name="commas--leading-commas"></a><a name="8.1"></a>
+  - [8.1](#commas--leading-commas) **Leading Commas**: **Nope**.
 
     ```ts
     // bad
@@ -276,8 +410,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
     };
     ```
 
-  <a name="commas--trailing"></a><a name="7.2"></a>
-  - [7.2](#commas--trailing) **Trailing Commas**: Additional trailing comma: **Yup**.
+  <a name="commas--trailing"></a><a name="8.2"></a>
+  - [8.2](#commas--trailing) **Trailing Commas**: Additional trailing comma: **Yup**.
 
 
     > Why? This leads to cleaner git diffs. Also, the Typescript transpiler will remove the additional
@@ -377,8 +511,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
 
 ## Semicolons
 
-  <a name="semicolons--required"></a><a name="8.1"></a>
-  - [8.1](#semicolons--required) **Required**: **Yup**.
+  <a name="semicolons--required"></a><a name="9.1"></a>
+  - [9.1](#semicolons--required) **Required**: **Yup**.
 
 
     > Why? When JavaScript encounters a line break without a semicolon, it uses a set of rules
@@ -434,8 +568,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
 
 ## Modules
 
-  <a name="modules--use-them"></a><a name="9.1"></a>
-  - [9.1](#modules--use-them) **Use Them**: Always use modules (`import`/`export`) over a non-standard module system. You can always
+  <a name="modules--use-them"></a><a name="10.1"></a>
+  - [10.1](#modules--use-them) **Use Them**: Always use modules (`import`/`export`) over a non-standard module system. You can always
     transpile to your preferred module system.
 
 
@@ -461,8 +595,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
     };
     ```
 
-  <a name="modules--single-export"></a><a name="9.2"></a>
-  - [9.2](#modules--single-export) **Single Export**: Do not use default exports. Use a single named `export` which  declares all the classes, 
+  <a name="modules--single-export"></a><a name="10.2"></a>
+  - [10.2](#modules--single-export) **Single Export**: Do not use default exports. Use a single named `export` which  declares all the classes, 
     functions, objects and interfaces that the module is exporting.
 
 
