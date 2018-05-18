@@ -8,6 +8,11 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+
+## [0.4.1] - May 18, 2018
+- Fix:`io-export-style` rule false reporting inside namespaces or declared modules.
+
+
 ## [0.4.0] - May 7, 2018
 - Added rules to check the "Blocks" section.
 - Added "References" section.
@@ -37,7 +42,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
   exports.
 
 
-[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.0...HEAD
+[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.1...HEAD
+[0.4.1]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/ioffice/tslint-config-ioffice/compare/0.2.0...0.3.1
 [0.2.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.1.0...0.2.0
