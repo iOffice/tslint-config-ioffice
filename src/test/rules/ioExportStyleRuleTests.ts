@@ -210,6 +210,19 @@ ruleTester.addSection('single', [
   },
 ]);
 
+ruleTester.addSection('allowed-in-namespaces', [
+  {
+    code: dedent`
+      namespace MyNameSpace {
+        export function a() {}
+        export function b() {}
+      }
+    `,
+    errors: expecting([
+    ]),
+  },
+]);
+
 export {
   RuleTester,
   ruleTester,

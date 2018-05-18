@@ -65,6 +65,10 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
           // is and allow the developer to remove it manually.
           this.addFailureAtNode(exportMember, MSG.noDefault);
         }
+      } else if (node.kind === ts.SyntaxKind.ModuleDeclaration) {
+        // Not messing with namespaces and module declarations, we only care about exports in
+        // the top level file
+        return;
       } else {
         return ts.forEachChild(node, cb);
       }
