@@ -1,6 +1,6 @@
 ## Tasks
 
-test: tcBuild
+test: travis
 
 preRelease: build
 	PRERELEASE=true node build/build-tools/tcbuilder.js
@@ -17,11 +17,8 @@ newRule: build
 testRules: build
 	node ./build/tasks.js testRules $(RULE)
 
-tcBuild: info build
+travis: build
 	node ./build/buildTools/tcBuilder.js
-
-docs:
-	echo 'Nothing to do for now'
 
 ## Dependencies
 
@@ -30,12 +27,5 @@ build: FORCE
 
 clean:
 	rm -rf build
-
-info:
-	node --version
-	npm --version
-	yarn --version
-	tsc --version
-	typedoc --version
 
 FORCE:
