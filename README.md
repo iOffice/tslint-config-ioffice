@@ -2,7 +2,7 @@
 # iOffice TypeScript Style Guide
 
 [![NPM Version](https://img.shields.io/npm/v/@ioffice/tslint-config-ioffice.svg)](https://www.npmjs.com/package/@ioffice/tslint-config-ioffice)
-[![License](https://img.shields.io/npm/l/tslint-config-ioffice.svg)](LICENSE)
+[![License](https://img.shields.io/npm/l/@ioffice/tslint-config-ioffice.svg)](LICENSE)
 [![Build Status](https://travis-ci.com/iOffice/tslint-config-ioffice.svg?branch=master)](https://travis-ci.com/iOffice/tslint-config-ioffice)
 
 Disclaimer: This guide is inspired by the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
