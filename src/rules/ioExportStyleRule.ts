@@ -88,7 +88,7 @@ class RuleWalker extends Lint.AbstractWalker<RuleOptions> {
       if (this.declarations.length === 0) {
         const end = this.sourceFile.end;
         const nList = names.join(',\n  ');
-        const fix = Lint.Replacement.appendText(end,  `export {\n  ${nList},\n};\n`);
+        const fix = Lint.Replacement.appendText(end, `export {\n  ${nList},\n};\n`);
         this.addFailureAt(end, 1, MSG.missing, fix);
       } else {
         const lastIndex = this.declarations.length - 1;
