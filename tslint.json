@@ -3,7 +3,11 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
-    "no-multi-spaces": [true],
+    "no-multi-spaces": [true, {
+      "exceptions": {
+        "PropertyAssignment": false
+      }
+    }],
     "no-var-keyword": true,
     "prefer-const": [true, { "destructuring": "all" }],
     "trailing-comma": [
