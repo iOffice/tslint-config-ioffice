@@ -50,13 +50,17 @@ function createReadme(): string {
   const lines: string[] = [
     '<!-- THIS IS AN AUTO-GENERATED FILE - DO NOT MODIFY MANUALLY -->',
     '# iOffice TypeScript Style Guide\n',
+    '[![NPM Version](https://img.shields.io/npm/v/@ioffice/tslint-config-ioffice.svg)](https://www.npmjs.com/package/@ioffice/tslint-config-ioffice)',
+    '[![License](https://img.shields.io/npm/l/tslint-config-ioffice.svg)](LICENSE)',
+    '[![Build Status](https://travis-ci.com/iOffice/tslint-config-ioffice.svg?branch=master)](https://travis-ci.com/iOffice/tslint-config-ioffice)\n',
     'Disclaimer: This guide is inspired by the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).',
     'Most sections we see here will be taken straight from their guide and slowly adapted to the typescript language.',
   ];
   lines.push(...toc);
   lines.push('');
   lines.push(...topics);
-  lines.push(fs.readFileSync('./LICENSE.md').toString());
+  lines.push('## License\n');
+  lines.push(fs.readFileSync('./LICENSE').toString());
   lines.push(fs.readFileSync('./AMENDMENTS.md').toString());
   return lines.join('\n');
 }
