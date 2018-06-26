@@ -9,6 +9,12 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 
+## [0.5.0] - June 26, 2018
+*Sections*
+
+- Single Space: using `no-multi-spaces` rule to avoid adding more than one unnecessary space.
+- Function Signature/Invocation: Specifying rule on how to deal with multi-line parameters. 
+
 ## [0.4.1] - May 18, 2018
 - Fix:`io-export-style` rule false reporting inside namespaces or declared modules.
 
@@ -42,7 +48,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
   exports.
 
 
-[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.1...HEAD
+[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.5.0...HEAD
+[0.5.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.1...0.5.0
 [0.4.1]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/ioffice/tslint-config-ioffice/compare/0.2.0...0.3.1

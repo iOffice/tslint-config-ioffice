@@ -17,6 +17,7 @@ Most sections we see here will be taken straight from their guide and slowly ada
       2. [Disallow Var](#references--disallow-var)
   3. [Functions](#functions)
       1. [Unused Parameters](#functions--unused-parameters)
+      2. [Signature/Invocation](#functions--signature-invocation)
   4. [Classes](#classes)
   5. [Arrow Functions](#arrows)
       1. [Use Them](#arrows--use-them)
@@ -26,7 +27,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
       3. [No Else Return](#blocks--no-else-return)
   7. [Whitespace](#whitespace)
       1. [Spaces](#whitespace--spaces)
-      2. [In Braces](#whitespace--in-braces)
+      2. [Single Space](#whitespace--single-space)
+      3. [In Braces](#whitespace--in-braces)
   8. [Commas](#commas)
       1. [Leading Commas](#commas--leading-commas)
       2. [Trailing Commas](#commas--trailing)
@@ -174,6 +176,43 @@ Most sections we see here will be taken straight from their guide and slowly ada
     function foo(a, b) {
       return a + b;
     }
+    ```
+
+  <a name="functions--signature-invocation"></a><a name="3.2"></a>
+  - [3.2](#functions--signature-invocation) **Signature/Invocation**: Functions with multiline signatures, or invocations, should be indented just like every other
+    multiline list in this guide: with each item on a line by itself, with a trailing comma on the
+    last item.
+
+    ```ts
+    // bad
+    function foo(bar,
+                 baz,
+                 quux) {
+      // ...
+    }
+    
+    // good
+    function foo(
+      bar,
+      baz,
+      quux,
+    ) {
+      // ...
+    }
+    ```
+
+    ```ts
+    // bad
+    console.log(foo,
+      bar,
+      baz);
+    
+    // good
+    console.log(
+      foo,
+      bar,
+      baz,
+    );
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -364,8 +403,51 @@ Most sections we see here will be taken straight from their guide and slowly ada
     }
     ```
 
-  <a name="whitespace--in-braces"></a><a name="7.2"></a>
-  - [7.2](#whitespace--in-braces) **In Braces**: Add spaces inside curly braces.
+  <a name="whitespace--single-space"></a><a name="7.2"></a>
+  - [7.2](#whitespace--single-space) **Single Space**: Use no more than a single space. Multiple spaces in a row that are not used for indentation are
+    typically mistakes. No other rule should allow multiple spaces.
+
+
+    > Adding unnecessary spaces for the sake of aligning code typically leads to chaotic git
+    > differences.
+    > 
+
+    ```ts
+    // bad
+    import { mod          } from 'mod';
+    import { someOtherMod } from 'some-other-mod';
+    
+    // good
+    import { mod } from 'mod';
+    import { someOtherMod } from 'some-other-mod';
+    ```
+
+    ```ts
+    // bad
+    const someVar      = 'foo';
+    const someOtherVar = 'barBaz';
+    
+    // good
+    const someVar = 'foo';
+    const someOtherVar = 'barBaz';
+    ```
+
+    ```ts
+    // bad
+    const obj = {
+      first:      'first',
+      secondLine: 'second',
+    };
+    
+    // good
+    const obj = {
+      first: 'first',
+      secondLine: 'second',
+    };
+    ```
+
+  <a name="whitespace--in-braces"></a><a name="7.3"></a>
+  - [7.3](#whitespace--in-braces) **In Braces**: Add spaces inside curly braces.
 
     ```ts
     // bad
