@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@ioffice/tc-builder@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@ioffice/tc-builder/-/tc-builder-2.1.1.tgz#c1395cbdc8dafd19d5ae5bce00fa44b5c9c73858"
+"@ioffice/tc-builder@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@ioffice/tc-builder/-/tc-builder-2.1.2.tgz#e59ac7d6c5a5ba5b9151e102ba9004309c573bcf"
 
 "@sinonjs/formatio@^2.0.0":
   version "2.0.0"
