@@ -1,7 +1,6 @@
 # Contributing
 
-All iOFFICE [npm](https://www.npmjs.com/org/ioffice) projects are managed by TeamCity. You may
-contribute by adding or modifying sections to the style guide.
+You may contribute by adding or modifying sections to the style guide.
 
 Before creating a pull request first make sure to open an issue so that others are aware of the
 problems we are trying to solve.
@@ -41,7 +40,12 @@ Only members of iOFFICE may create a pre-release in any branch by running
 make preRelease
 ```
 
-The output of the command will provide the beta version number assigned to the pre-release.
+The output of the command will provide the beta version number assigned to the pre-release. The
+pre-released version is tagged so you may also install it by doing
+
+```
+yarn add @ioffice/tslint-config-ioffice@next
+```
 
 ## Releasing
 
@@ -54,5 +58,5 @@ To make a release do the following:
 - Create a pull request.
 - If everything is good, then merge.
 
-Shortly after the branch is merged, TeamCity will do another build and the package will be
-released to npm.
+Shortly after the branch is merged, the continous integration tool will do another build and the
+package will be released to whichever registry is specified in the `package.json` file.
