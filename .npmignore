@@ -13,3 +13,4 @@ version.json
 *.build.cmd
 yarn.lock
 .travis.yml
+tcBuilderMessages.json
