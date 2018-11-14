@@ -1,4 +1,4 @@
-import { ISection, dedent, expecting } from '../../util';
+import { dedent, expecting, ISection } from '../../util';
 
 const section: ISection = {
   name: 'Leading Commas',

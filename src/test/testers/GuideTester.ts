@@ -1,7 +1,8 @@
+import { ISection } from '../../util';
+
 import { BaseTester } from './BaseTester';
 import { SectionTests } from './SectionTests';
 import { TestResult } from './Test';
-import { ISection } from '../../util';
 
 // Combining the configurations in order to test the whole guide
 const IOFFICE_CONFIG = require('../../../tslint-config-ioffice.json');

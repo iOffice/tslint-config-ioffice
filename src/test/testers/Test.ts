@@ -1,7 +1,8 @@
-import * as Lint from 'tslint';
 import * as jsdiff from 'diff';
-import { Position } from './Position';
+import * as Lint from 'tslint';
+
 import { Failure, LintFailure } from './Failure';
+import { Position } from './Position';
 
 interface Test {
   code: string;

@@ -1,4 +1,4 @@
-import { ISection, dedent, expecting } from '../../util';
+import { dedent, expecting, ISection } from '../../util';
 
 const section: ISection = {
   name: 'Single Export',
@@ -16,7 +16,7 @@ const section: ISection = {
     exporting.
     `,
   tslint: {
-    // 'io-export-style': 'https://github.com/ioffice/',
+    'io-export-style': 'https://github.com/iOffice/tslint-config-ioffice/blob/master/src/rules/ioExportStyleRule.ts',
   },
   examples: [
     {

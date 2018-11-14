@@ -1,6 +1,7 @@
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
 import { dedent } from 'tslint/lib/utils';
+
 import { Failure, Position } from './test';
 
 interface IExample {

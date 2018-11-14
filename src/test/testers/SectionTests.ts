@@ -1,6 +1,7 @@
 import * as Lint from 'tslint';
+
 import { LintFailure } from './Failure';
-import { Test, LintTest } from './Test';
+import { LintTest, Test } from './Test';
 
 class SectionTests {
   public topicName: string;

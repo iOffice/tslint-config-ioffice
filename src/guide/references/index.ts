@@ -1,5 +1,5 @@
-import * as preferConst from './prefer-const';
 import * as disallowVar from './disallow-var';
+import * as preferConst from './prefer-const';
 
 const name = 'References';
 const reference = 'references';

@@ -1,5 +1,6 @@
 // THIS FILE IS AUTO-GENERATED, DO NOT EDIT
-import { RuleTester } from '../testers/RuleTester';
+import { RuleTester } from '../testers';
+
 import * as exportStyle from './ioExportStyleRuleTests';
 
 const rulesTestOrder: RuleTester[] = [

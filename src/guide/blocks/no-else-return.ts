@@ -1,4 +1,4 @@
-import { ISection, dedent, expecting } from '../../util';
+import { dedent, expecting, ISection } from '../../util';
 
 // TODO: Need to add https://eslint.org/docs/rules/no-else-return (not ready for typescript)
 const section: ISection = {
