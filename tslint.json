@@ -3,6 +3,7 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
+    "no-angle-bracket-type-assertion": true,
     "ordered-imports": [true, {
       "grouped-imports": true
     }],
@@ -36,6 +37,7 @@
       true,
       "always"
     ],
+    "no-consecutive-blank-lines": true,
     "ter-indent": [true, 2, {
       "SwitchCase": 1,
       "outerIIFEBody": 0,
