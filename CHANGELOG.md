@@ -9,6 +9,14 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 
+## [0.6.0] - November 14, 2018
+*Sections*
+
+- Type Assertion: forces use of `as Type` syntax.
+- Consecutive Blank Lines: Lets avoid them.
+- Import Order: Lets start alphabetizing and grouping our imports.
+- Multiline Imports: No way to enforce this yet, but an example has been included.
+
 ## [0.5.0] - June 26, 2018
 *Sections*
 
@@ -48,7 +56,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
   exports.
 
 
-[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.5.0...HEAD
+[Unreleased]: https://github.com/ioffice/tslint-config-ioffice/compare/0.6.0...HEAD
+[0.6.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.1...0.5.0
 [0.4.1]: https://github.com/ioffice/tslint-config-ioffice/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/ioffice/tslint-config-ioffice/compare/0.3.1...0.4.0
