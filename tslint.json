@@ -3,6 +3,9 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
+    "ordered-imports": [true, {
+      "grouped-imports": true
+    }],
     "no-multi-spaces": [true, {
       "exceptions": {
         "PropertyAssignment": false

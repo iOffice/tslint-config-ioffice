@@ -1,10 +1,11 @@
 import { dedent } from 'tslint/lib/utils';
+
 import { Failure } from './Failure';
-import { Position } from './Position';
-import { TestResult, formatTestResult } from './Test';
 import { GuideTester } from './GuideTester';
-import { RuleTester } from './RuleTester';
+import { Position } from './Position';
 import { RulesTester } from './RulesTester';
+import { RuleTester } from './RuleTester';
+import { formatTestResult, TestResult } from './Test';
 
 export {
   dedent,

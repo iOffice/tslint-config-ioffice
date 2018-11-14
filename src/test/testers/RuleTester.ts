@@ -1,5 +1,5 @@
-import { Test } from './Test';
 import { SectionTests } from './SectionTests';
+import { Test } from './Test';
 
 class RuleTester {
   ruleName: string;

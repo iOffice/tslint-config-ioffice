@@ -1,6 +1,6 @@
-import * as spaces from './spaces';
 import * as inBraces from './in-braces';
 import * as singleSpace from './single-space';
+import * as spaces from './spaces';
 
 const name = 'Whitespace';
 const reference = 'whitespace';

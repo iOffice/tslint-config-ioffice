@@ -1,15 +1,16 @@
 import {
-  getProjectStatus,
   compileProject,
   formatProjectResults,
+  getProjectStatus,
   NPMBuilder,
-  Util,
   runBuilder,
+  Util,
 } from '@ioffice/tc-builder';
-import { rulesTestOrder } from '../test/rules';
-import { GuideTester, RulesTester } from '../test';
-import { topicOrder } from '../guide';
 import { readFileSync, writeFileSync } from "fs";
+
+import { topicOrder } from '../guide';
+import { GuideTester, RulesTester } from '../test';
+import { rulesTestOrder } from '../test/rules';
 
 class Builder extends NPMBuilder {
   util = Util.getInstance();

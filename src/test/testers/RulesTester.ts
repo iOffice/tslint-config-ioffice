@@ -1,6 +1,6 @@
 import { BaseTester } from './BaseTester';
-import { TestResult } from './Test';
 import { SectionTests } from './SectionTests';
+import { TestResult } from './Test';
 
 class RulesTester extends BaseTester {
   private ruleTesters: any[];
