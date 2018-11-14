@@ -1,3 +1,5 @@
+import * as importOrder from './import-order';
+import * as multilineImports from './multiline-imports';
 import * as singleExport from './single-export';
 import * as useThem from './use-them';
 
@@ -6,6 +8,8 @@ const reference = 'modules';
 const order: any[] = [
   useThem,
   singleExport,
+  importOrder,
+  multilineImports,
 ];
 
 export {

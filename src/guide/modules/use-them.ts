@@ -11,7 +11,6 @@ const section: ISection = {
     Why? Modules are the future
     `,
   tslint: {
-    'ter-prefer-arrow-callback': 'https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terPreferArrowCallbackRule.md',
   },
   examples: [
     {
