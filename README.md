@@ -12,6 +12,7 @@ Most sections we see here will be taken straight from their guide and slowly ada
   1. [Types](#types)
       1. [Primitives](#types--primitives)
       2. [Complex](#types--complex)
+      3. [Type Assertion](#types--type-assertion)
   2. [References](#references)
       1. [Prefer Const](#references--prefer-const)
       2. [Disallow Var](#references--disallow-var)
@@ -29,6 +30,7 @@ Most sections we see here will be taken straight from their guide and slowly ada
       1. [Spaces](#whitespace--spaces)
       2. [Single Space](#whitespace--single-space)
       3. [In Braces](#whitespace--in-braces)
+      4. [Consecutive Blank Lines](#whitespace--consecutive-blank-lines)
   8. [Commas](#commas)
       1. [Leading Commas](#commas--leading-commas)
       2. [Trailing Commas](#commas--trailing)
@@ -37,6 +39,8 @@ Most sections we see here will be taken straight from their guide and slowly ada
   10. [Modules](#modules)
       1. [Use Them](#modules--use-them)
       2. [Single Export](#modules--single-export)
+      3. [Import Order](#modules--import-order)
+      4. [Multiline Imports](#modules--multiline-imports)
 
 ## Types
 
@@ -90,6 +94,31 @@ Most sections we see here will be taken straight from their guide and slowly ada
     bar[0] = 9;
     
     console.log(foo[0], bar[0]); // => 9, 9
+    ```
+
+  <a name="types--type-assertion"></a><a name="1.3"></a>
+  - [1.3](#types--type-assertion) **Type Assertion**: Avoid using the angle bracket type assertion.
+
+
+    > Although both formats have the same effect our goal is to have a consistent type
+    > assertion style across our codebase. Using the `as Type` syntax can also avoid confusion
+    > with generic methods and classes that use angle brackets.
+    > 
+
+    ```ts
+    // bad
+    processProperty(<Person>user.property);
+    
+    // good
+    processProperty((user as Person).property);
+    ```
+
+    ```ts
+    // bad
+    someGenericMethod<Person>(<Person>user);
+    
+    // good
+    someGenericMethod<Person>(user as Person);
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -457,6 +486,23 @@ Most sections we see here will be taken straight from their guide and slowly ada
     const foo = { clark: 'kent' };
     ```
 
+  <a name="whitespace--consecutive-blank-lines"></a><a name="7.4"></a>
+  - [7.4](#whitespace--consecutive-blank-lines) **Consecutive Blank Lines**: Avoid multiple empty lines and only allow one line at the end of the file.
+
+    ```ts
+    // bad
+    const x = 1;
+    
+    
+    
+    const y = 2;
+    
+    // good
+    const x = 1;
+    
+    const y = 2;
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Commas
@@ -725,6 +771,59 @@ Most sections we see here will be taken straight from their guide and slowly ada
     function A() {
     }
     export { A };
+    ```
+
+  <a name="modules--import-order"></a><a name="10.3"></a>
+  - [10.3](#modules--import-order) **Import Order**: Import statements should be alphabetized and grouped.
+
+
+    > Why? It enforces a consistent ordering.
+    > 
+
+    ```ts
+    // bad
+    import { B, A } from 'xyz';
+    
+    // good
+    import { A, B } from 'xyz';
+    ```
+
+    ```ts
+    // bad
+    import { a } from './local/path';
+    import { B, A, D, C } from 'xyz';
+    import { b } from '../parent/directory';
+    ```
+
+    ```ts
+    // good
+    import { A, B, C, D } from 'xyz';
+    
+    import { b } from '../parent/directory';
+    
+    import { a } from './local/path';
+    ```
+
+  <a name="modules--multiline-imports"></a><a name="10.4"></a>
+  - [10.4](#modules--multiline-imports) **Multiline Imports**: Multiline imports should be indented just like multiline array and object literals.
+
+
+    > Why? The curly braces follow the same indentation rules as every other curly brace block in the
+    > style guide, as do the trailing commas.
+    > 
+
+    ```ts
+    // bad
+    import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
+    
+    // good
+    import {
+      longNameA,
+      longNameB,
+      longNameC,
+      longNameD,
+      longNameE,
+    } from 'path';
     ```
 
 **[⬆ back to top](#table-of-contents)**
