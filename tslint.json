@@ -3,6 +3,7 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
+    "no-angle-bracket-type-assertion": true,
     "ordered-imports": [true, {
       "grouped-imports": true
     }],
