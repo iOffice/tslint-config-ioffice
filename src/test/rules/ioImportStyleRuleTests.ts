@@ -3,6 +3,7 @@ import { dedent, Failure, Position, RuleTester } from '../testers';
 const ruleTester = new RuleTester('io-import-style');
 
 const MSG = {
+  namedImports: 'Named imports must be alphabetized.',
   importSources: 'Import sources within a group must be alphabetized.',
   groups: 'Import sources of different groups must be sorted by: 3rd-party-libraries, ioffice-libraries, project-modules .',
 };
@@ -28,6 +29,15 @@ ruleTester.addSection('default', [
     errors: expecting([
       [1, 12, 'namedImports'],
     ]),
+    options: {
+      'grouped-imports': true,
+      'named-imports-order': "lowercase-last",
+      groups: [
+        { name: 'ioffice-libraries', "match": "^@ioffice", "order": 20 },
+        { name: "project-modules", "match": "^[.\\^]", "order": 40 },
+        { name: "3rd-party-libraries", match: ".*", order: 1 },
+      ],
+    },
   },
   {
     code: dedent`
@@ -54,6 +64,7 @@ ruleTester.addSection('default', [
       `,
     options: {
       'grouped-imports': true,
+      'named-imports-order': "lowercase-last",
       groups: [
         { name: 'ioffice-libraries', "match": "^@ioffice", "order": 20 },
         { name: "project-modules", "match": "^[.\\^]", "order": 40 },
