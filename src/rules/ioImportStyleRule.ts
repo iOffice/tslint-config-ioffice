@@ -31,7 +31,7 @@ import {
 } from "tsutils";
 import * as ts from "typescript";
 
-export class Rule extends Lint.Rules.AbstractRule {
+class Rule extends Lint.Rules.AbstractRule {
   /* tslint:disable:object-literal-sort-keys */
   public static metadata: Lint.IRuleMetadata = {
     ruleName: "io-import-style",
@@ -736,3 +736,7 @@ function moduleDeclarationBody(node: ts.ModuleDeclaration): ts.ModuleBlock | und
   }
   return body !== undefined && body.kind === ts.SyntaxKind.ModuleBlock ? body : undefined;
 }
+
+export {
+  Rule,
+};

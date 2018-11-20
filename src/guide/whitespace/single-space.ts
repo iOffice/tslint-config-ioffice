@@ -1,4 +1,4 @@
-import { dedent, expecting, ISection } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Single Space',

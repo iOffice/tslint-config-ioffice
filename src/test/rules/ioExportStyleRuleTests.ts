@@ -1,4 +1,4 @@
-import { dedent, Failure, Position, RuleTester } from '../testers';
+import { Failure, Position, RuleTester, dedent } from '../testers';
 
 const ruleTester = new RuleTester('io-export-style');
 

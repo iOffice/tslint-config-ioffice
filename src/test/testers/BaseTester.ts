@@ -1,4 +1,4 @@
-import { formatTestResult, TestResult } from './Test';
+import { TestResult, formatTestResult } from './Test';
 
 class BaseTester {
   protected events: { [ key: string ]: Function } = {
