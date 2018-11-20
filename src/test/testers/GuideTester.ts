@@ -1,5 +1,4 @@
 import { ISection } from '../../util';
-
 import { BaseTester } from './BaseTester';
 import { SectionTests } from './SectionTests';
 import { TestResult } from './Test';

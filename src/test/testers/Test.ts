@@ -80,8 +80,18 @@ class LintTest implements Test {
 
     let fixedCode = '';
     if (this.output) {
-      const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
-      fixedCode = Lint.Replacement.applyAll(this.code, fixes as any);
+      const fixes = linter.getResult().failures
+        .filter(f => f.hasFix())
+        .map(f => {
+          const fix = f.getFix();
+          if (!Array.isArray(fix)) {
+            return [fix!];
+          }
+
+          return fix;
+        })
+        .reduce((acc, val) => acc.concat(val), []);
+      fixedCode = Lint.Replacement.applyAll(this.code, fixes);
     }
 
     const testPassed = (

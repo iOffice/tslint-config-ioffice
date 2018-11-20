@@ -1,4 +1,4 @@
-import { dedent, expecting, ISection } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Single Space',
@@ -26,6 +26,8 @@ const section: ISection = {
         `,
       errors: expecting([
         [2, 22, 'no-multi-spaces', `Multiple spaces found before '}'.`],
+        // TODO: This will need to be replaced by `ordered-imports` once we remove this rule
+        [6, 0, 'io-import-style', 'Import sources of different groups must be sorted by: 3rd-party-libraries, ioffice-libraries, project-modules .'],
       ]),
     },
     {

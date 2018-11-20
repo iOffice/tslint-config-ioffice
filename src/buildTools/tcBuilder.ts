@@ -1,12 +1,13 @@
+import { readFileSync, writeFileSync } from "fs";
+
 import {
+  NPMBuilder,
+  Util,
   compileProject,
   formatProjectResults,
   getProjectStatus,
-  NPMBuilder,
   runBuilder,
-  Util,
 } from '@ioffice/tc-builder';
-import { readFileSync, writeFileSync } from "fs";
 
 import { topicOrder } from '../guide';
 import { GuideTester, RulesTester } from '../test';

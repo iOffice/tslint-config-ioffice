@@ -1,4 +1,4 @@
-import { dedent, expecting, ISection } from '../../util';
+import { ISection, dedent, expecting } from '../../util';
 
 const section: ISection = {
   name: 'Use Them',
@@ -33,6 +33,7 @@ const section: ISection = {
         };
         `,
       errors: expecting([
+        [13, 0, 'io-import-style', 'Import sources of different groups must be sorted by: 3rd-party-libraries, ioffice-libraries, project-modules .'],
       ]),
     },
   ],

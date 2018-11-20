@@ -4,9 +4,6 @@
   ],
   "rules": {
     "no-angle-bracket-type-assertion": true,
-    "ordered-imports": [true, {
-      "grouped-imports": true
-    }],
     "no-multi-spaces": [true, {
       "exceptions": {
         "PropertyAssignment": false

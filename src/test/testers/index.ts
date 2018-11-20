@@ -5,7 +5,7 @@ import { GuideTester } from './GuideTester';
 import { Position } from './Position';
 import { RulesTester } from './RulesTester';
 import { RuleTester } from './RuleTester';
-import { formatTestResult, TestResult } from './Test';
+import { TestResult, formatTestResult } from './Test';
 
 export {
   dedent,
