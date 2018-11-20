@@ -774,7 +774,11 @@ Most sections we see here will be taken straight from their guide and slowly ada
     ```
 
   <a name="modules--import-order"></a><a name="10.3"></a>
-  - [10.3](#modules--import-order) **Import Order**: Import statements should be alphabetized and grouped.
+  - [10.3](#modules--import-order) **Import Order**: Import statements should be alphabetized and sorted. Sources of different groups must be
+    sorted by 3rd party libraries, libraries provided by iOFFICE and finally local modules.
+    
+    Currently this is specified by the `io-import-style` since the `ordered-imports` rule has
+    not merged the change that will allow us to create custom groups.
 
 
     > Why? It enforces a consistent ordering.
@@ -800,7 +804,6 @@ Most sections we see here will be taken straight from their guide and slowly ada
     import { A, B, C, D } from 'xyz';
     
     import { b } from '../parent/directory';
-    
     import { a } from './local/path';
     ```
 
@@ -815,7 +818,9 @@ Most sections we see here will be taken straight from their guide and slowly ada
     ```ts
     // bad
     import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
-    
+    ```
+
+    ```ts
     // good
     import {
       longNameA,
