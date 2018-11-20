@@ -17,7 +17,14 @@ const section: ISection = {
       code: dedent`
         // bad
         import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
-
+        `,
+      errors: expecting([
+        [2, 7, 'object-curly-spacing', "A space is required after '{'"],
+        [2, 61, 'object-curly-spacing', "A space is required before '}'"],
+      ]),
+    },
+    {
+      code: dedent`
         // good
         import {
           longNameA,
@@ -28,8 +35,6 @@ const section: ISection = {
         } from 'path';
         `,
       errors: expecting([
-        [2, 7, 'object-curly-spacing', "A space is required after '{'"],
-        [2, 61, 'object-curly-spacing', "A space is required before '}'"],
       ]),
     },
   ],
